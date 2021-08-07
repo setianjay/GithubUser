@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">GithubUser</string>
+    <string name="githubuser">GithubUser</string>
+    <string name="find_someone_on_github">Find someone on Github</string>
+    <string name="let_s_find_out">Let\'s Find Out</string>
 </resources>

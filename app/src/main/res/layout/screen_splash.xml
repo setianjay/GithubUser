@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screens.SplashScreen">
+    tools:context=".screens.activity.SplashScreen">
 
     <ImageView
         android:id="@+id/iv_github"
@@ -25,7 +25,7 @@
         android:fontFamily="@font/montserrat_bold"
         android:textColor="@color/black"
         android:textSize="@dimen/text_36"
-        android:text="@string/githubuser"
+        android:text="@string/app_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_github"
@@ -48,7 +48,7 @@
         android:id="@+id/btn_move"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cornerRadius="15dp"
+        app:cornerRadius="@dimen/radius_15"
         android:backgroundTint="@color/black"
         android:fontFamily="@font/montserrat_bold"
         android:textSize="@dimen/text_13"

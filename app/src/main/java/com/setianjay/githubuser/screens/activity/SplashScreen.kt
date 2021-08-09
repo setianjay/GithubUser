@@ -1,8 +1,8 @@
-package com.setianjay.githubuser.screens
+package com.setianjay.githubuser.screens.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import com.setianjay.githubuser.databinding.ScreenSplashBinding
 import com.setianjay.githubuser.screens.common.animations.Animations
 
@@ -33,7 +33,10 @@ class SplashScreen : AppCompatActivity() {
     
     private fun initListener(){
         binding.btnMove.setOnClickListener{
-            Toast.makeText(this@SplashScreen, "Move to HomeActivity", Toast.LENGTH_SHORT).show()
+            startActivity(
+                Intent(this@SplashScreen, HomeActivity::class.java)
+            )
+            finish()
         }
     }
 }

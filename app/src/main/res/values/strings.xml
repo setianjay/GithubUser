@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">GithubUser</string>
-    <string name="githubuser">GithubUser</string>
     <string name="find_someone_on_github">Find someone on Github</string>
     <string name="let_s_find_out">Let\'s Find Out</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="find_someone_here">Find someone here</string>
+    <string name="home">Home</string>
+    <string name="location">New Delhi, India</string>
+    <string name="name">Sharukh Khan</string>
 </resources>

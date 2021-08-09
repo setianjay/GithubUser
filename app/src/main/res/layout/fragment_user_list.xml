@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".screens.fragment.UserListFragment"
+    android:padding="@dimen/padding_21"
+    android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/sp_search"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/padding_14"
+            android:paddingEnd="@dimen/padding_14"
+            android:paddingTop="@dimen/padding_10"
+            android:paddingBottom="@dimen/padding_10">
+
+            <ImageView
+                android:id="@+id/iv_search"
+                android:layout_width="@dimen/width_24"
+                android:layout_height="@dimen/width_24"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_search"/>
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="@null"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:maxLines="1"
+                android:fontFamily="@font/montserrat_regular"
+                android:hint="@string/find_someone_here"
+                android:textSize="@dimen/text_16"
+                android:layout_marginStart="@dimen/margin_10"
+                tools:ignore="Autofill"/>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_user_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_user_list"/>
+</LinearLayout>

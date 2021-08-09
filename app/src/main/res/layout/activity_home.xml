@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".screens.activity.HomeActivity"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingStart="@dimen/padding_21"
+        android:paddingEnd="@dimen/padding_21">
+
+        <TextView
+            android:id="@+id/tv_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/merienda_regular"
+            android:textSize="@dimen/text_24"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text="@string/home"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/margin_27"/>
+
+        <ImageView
+            android:id="@+id/iv_favorite"
+            android:layout_width="@dimen/width_24"
+            android:layout_height="@dimen/height_24"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_heart"
+            app:layout_constraintEnd_toEndOf="@id/iv_menus"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="@dimen/margin_40"
+            android:layout_marginTop="@dimen/margin_32"
+            android:visibility="invisible"/>
+
+        <ImageView
+            android:id="@+id/iv_menus"
+            android:layout_width="@dimen/width_24"
+            android:layout_height="@dimen/height_24"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_menu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/margin_32"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment_container"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_content"/>
+</LinearLayout>

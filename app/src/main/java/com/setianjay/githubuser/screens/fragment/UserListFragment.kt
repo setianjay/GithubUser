@@ -11,6 +11,7 @@ import com.setianjay.githubuser.R
 import com.setianjay.githubuser.databinding.FragmentUserListBinding
 import com.setianjay.githubuser.model.user.UserManager
 import com.setianjay.githubuser.model.user.UserModel
+import com.setianjay.githubuser.screens.activity.HomeActivity
 import com.setianjay.githubuser.screens.adapter.UserListAdapter
 
 class UserListFragment : Fragment() {
@@ -35,6 +36,7 @@ class UserListFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         showUser(userData)
+        setTitle()
     }
 
     private fun setupRecycleView(){
@@ -57,5 +59,9 @@ class UserListFragment : Fragment() {
 
     private fun showUser(userData: List<UserModel>) {
         userAdapter.setDataUser(userData)
+    }
+
+    private fun setTitle(){
+        (requireActivity() as HomeActivity).setTitle(getString(R.string.home))
     }
 }

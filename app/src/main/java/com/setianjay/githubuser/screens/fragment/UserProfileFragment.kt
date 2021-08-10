@@ -31,6 +31,11 @@ class UserProfileFragment : Fragment() {
         setupTabLayout()
     }
 
+    override fun onStart() {
+        super.onStart()
+        setTitle()
+    }
+
     private fun dataUser(){
         val bundle = arguments
         if (bundle != null) {
@@ -62,6 +67,10 @@ class UserProfileFragment : Fragment() {
         TabLayoutMediator(binding.tbLayout,binding.vwPager){
                 tab, position -> tab.text = titlesTabLayout[position]
         }.attach()
+    }
+
+    private fun setTitle(){
+        (requireActivity() as HomeActivity).setTitle(getString(R.string.profile))
     }
 
     companion object{

@@ -41,4 +41,8 @@ class HomeActivity : AppCompatActivity() {
 
         popupMenu.show()
     }
+
+    fun setTitle(title: String){
+        binding.tvPage.text = title
+    }
 }

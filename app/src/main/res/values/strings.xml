@@ -13,4 +13,6 @@
     <string name="following">Following</string>
     <string name="company">MindorksOpenSource</string>
     <string name="profile">Profile</string>
+    <string name="favorites">Favorites</string>
+    <string name="settings">Settings</string>
 </resources>

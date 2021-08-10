@@ -8,8 +8,12 @@ import com.setianjay.githubuser.databinding.ItemUserListBinding
 import com.setianjay.githubuser.model.user.UserModel
 import timber.log.Timber
 
-class UserListAdapter() : RecyclerView.Adapter<UserListAdapter.ViewHolder>() {
+class UserListAdapter(private val listener: OnUserListAdapterListener) : RecyclerView.Adapter<UserListAdapter.ViewHolder>() {
     private val users: ArrayList<UserModel> = arrayListOf()
+
+    interface OnUserListAdapterListener{
+        fun onClick(data: UserModel)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -23,13 +27,13 @@ class UserListAdapter() : RecyclerView.Adapter<UserListAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val user = users[position]
-        holder.usersBind(user = user)
+        holder.usersBind(user = user, listener)
     }
 
     override fun getItemCount(): Int  = users.size
 
     class ViewHolder(private val binding: ItemUserListBinding) : RecyclerView.ViewHolder(binding.root){
-        fun usersBind(user: UserModel){
+        fun usersBind(user: UserModel, listener: OnUserListAdapterListener){
             Timber.e("avatar user : ${user.avatar}")
            Glide
                .with(binding.ivUser.context)
@@ -38,6 +42,8 @@ class UserListAdapter() : RecyclerView.Adapter<UserListAdapter.ViewHolder>() {
 
             binding.tvUser.text = user.name
             binding.tvLocation.text = user.location
+
+            binding.containerUser.setOnClickListener { listener.onClick(user) }
         }
     }
 

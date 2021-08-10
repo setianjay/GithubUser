@@ -7,4 +7,10 @@
     <string name="home">Home</string>
     <string name="location">New Delhi, India</string>
     <string name="name">Sharukh Khan</string>
+    <string name="number">100000</string>
+    <string name="repository">Repository</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="company">MindorksOpenSource</string>
+    <string name="profile">Profile</string>
 </resources>

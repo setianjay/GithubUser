@@ -11,7 +11,9 @@ import com.setianjay.githubuser.model.user.*
 import com.setianjay.githubuser.screens.adapter.UserListAdapter
 
 class FollowersFragment : Fragment() {
-    private lateinit var binding: FragmentFollowersBinding
+    private var _binding: FragmentFollowersBinding? = null
+    private val binding get() = _binding!!
+
     private lateinit var userAdapter: UserListAdapter
     private lateinit var userData: List<UserModel>
 
@@ -19,7 +21,7 @@ class FollowersFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentFollowersBinding.inflate(inflater,container,false)
+        _binding = FragmentFollowersBinding.inflate(inflater,container,false)
         return binding.root
     }
 

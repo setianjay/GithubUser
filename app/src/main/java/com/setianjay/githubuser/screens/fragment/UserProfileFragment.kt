@@ -14,14 +14,15 @@ import com.setianjay.githubuser.screens.activity.HomeActivity
 import com.setianjay.githubuser.screens.common.tablayout.ProfileTabLayout
 
 class UserProfileFragment : Fragment() {
-    private lateinit var binding: FragmentUserProfileBinding
+    private var _binding: FragmentUserProfileBinding? = null
+    private val binding get() = _binding!!
     private var data: UserModel? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentUserProfileBinding.inflate(inflater, container, false)
+        _binding = FragmentUserProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -36,7 +37,7 @@ class UserProfileFragment : Fragment() {
         setTitle()
     }
 
-    private fun dataUser(){
+    private fun dataUser() {
         val bundle = arguments
         if (bundle != null) {
             data = bundle.getParcelable(EXTRA_PROFILE)
@@ -50,30 +51,37 @@ class UserProfileFragment : Fragment() {
             .load(data?.avatar)
             .into(binding.ivProfile)
 
-        binding.tvRepository.text = data?.repository.toString()
-        binding.tvFollowers.text = data?.followers.toString()
-        binding.tvFollowing.text = data?.following.toString()
-        binding.tvName.text = data?.name
-        binding.tvUsername.text = data?.username
-        binding.tvCompany.text = data?.company
-        binding.tvLocation.text = data?.location
+        binding.apply {
+            tvRepository.text = data?.repository.toString()
+            tvFollowers.text = data?.followers.toString()
+            tvFollowing.text = data?.following.toString()
+            tvName.text = data?.name
+            tvUsername.text = data?.username
+            tvCompany.text = data?.company
+            tvLocation.text = data?.location
+        }
     }
 
-    private fun setupTabLayout(){
-        val tabAdapter = ProfileTabLayout(childFragmentManager,lifecycle)
+    private fun setupTabLayout() {
+        val tabAdapter = ProfileTabLayout(childFragmentManager, lifecycle)
         binding.vwPager.adapter = tabAdapter
 
-        val titlesTabLayout = listOf("Followers","Following")
-        TabLayoutMediator(binding.tbLayout,binding.vwPager){
-                tab, position -> tab.text = titlesTabLayout[position]
+        val titlesTabLayout = listOf(getString(R.string.followers), getString(R.string.following))
+        TabLayoutMediator(binding.tbLayout, binding.vwPager) { tab, position ->
+            tab.text = titlesTabLayout[position]
         }.attach()
     }
 
-    private fun setTitle(){
+    private fun setTitle() {
         (requireActivity() as HomeActivity).setTitle(getString(R.string.profile))
     }
 
-    companion object{
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
+    companion object {
         const val EXTRA_PROFILE = "extra_profile"
     }
 }

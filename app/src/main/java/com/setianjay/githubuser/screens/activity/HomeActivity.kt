@@ -28,7 +28,7 @@ class HomeActivity : AppCompatActivity() {
         popupMenu.menuInflater.inflate(R.menu.popup_menu,popupMenu.menu)
 
         popupMenu.setOnMenuItemClickListener { item: MenuItem? ->
-            when(item!!.itemId){
+            when(item?.itemId){
                 R.id.favorites -> {
                     Toast.makeText(this@HomeActivity, "Under Development", Toast.LENGTH_SHORT).show()
                 }

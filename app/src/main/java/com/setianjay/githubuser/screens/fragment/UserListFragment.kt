@@ -15,7 +15,8 @@ import com.setianjay.githubuser.screens.activity.HomeActivity
 import com.setianjay.githubuser.screens.adapter.UserListAdapter
 
 class UserListFragment : Fragment() {
-    private lateinit var binding: FragmentUserListBinding
+    private var _binding: FragmentUserListBinding? = null
+    private val binding get() = _binding!!
 
     private lateinit var userData: List<UserModel>
     private lateinit var userAdapter: UserListAdapter
@@ -24,7 +25,7 @@ class UserListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentUserListBinding.inflate(inflater,container,false)
+        _binding = FragmentUserListBinding.inflate(inflater,container,false)
         return binding.root
     }
 
@@ -63,5 +64,10 @@ class UserListFragment : Fragment() {
 
     private fun setTitle(){
         (requireActivity() as HomeActivity).setTitle(getString(R.string.home))
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

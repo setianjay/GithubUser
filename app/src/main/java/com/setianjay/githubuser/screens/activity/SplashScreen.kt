@@ -18,17 +18,19 @@ class SplashScreen : AppCompatActivity() {
     }
 
     private fun initAnimations(){
-        // animation for image github
-        binding.ivGithub.startAnimation(animations.topToBottom())
+        binding.apply {
+            // animation for image github
+            ivGithub.startAnimation(animations.topToBottom())
 
-        // animation for title
-        binding.tvTitle.startAnimation(animations.scaleToBig())
+            // animation for title
+            tvTitle.startAnimation(animations.scaleToBig())
 
-        // animation for subtitle
-        binding.tvSubtitle.startAnimation(animations.scaleToBig())
+            // animation for subtitle
+            tvSubtitle.startAnimation(animations.scaleToBig())
 
-        // animation for button leave
-        binding.btnMove.startAnimation(animations.bottomToTop())
+            // animation for button leave
+            btnMove.startAnimation(animations.bottomToTop())
+        }
     }
     
     private fun initListener(){

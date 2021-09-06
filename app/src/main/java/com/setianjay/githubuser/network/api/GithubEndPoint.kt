@@ -19,9 +19,6 @@ interface GithubEndPoint {
     @GET("users/{username}/following")
     suspend fun getFollowing(@Path("username") username: String): Response<List<UsersModel>>
 
-    @GET("users")
-    suspend fun getUsers(): Response<List<UsersModel>>
-
     @GET("search/users")
     suspend fun searchUsers(@Query("q") username: String): Response<SearchResponse>
 }

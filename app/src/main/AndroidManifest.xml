@@ -2,7 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.setianjay.githubuser">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
+        android:name=".app.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -12,7 +15,9 @@
         <activity
             android:name=".screens.activity.HomeActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".screens.activity.SplashScreen">
+        <activity
+            android:name=".screens.activity.SplashScreen"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

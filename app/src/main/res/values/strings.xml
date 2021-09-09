@@ -15,4 +15,12 @@
     <string name="profile">Profile</string>
     <string name="favorites">Favorites</string>
     <string name="settings">Settings</string>
+    <string name="title_search">Let\'s find someone</string>
+    <string name="message_search">Find your friend or your coworker</string>
+    <string name="title_not_found">Users not found</string>
+    <string name="message_not_found">Make sure the username is correct</string>
+    <string name="field_required">Field cannot be empty</string>
+    <string name="failed_to_connect_server">Failed to connect to the server</string>
+    <string name="something_wrong">Something wrong</string>
+    <string name="try_again">Try Again</string>
 </resources>

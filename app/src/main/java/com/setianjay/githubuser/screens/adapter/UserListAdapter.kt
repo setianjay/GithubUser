@@ -6,13 +6,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.setianjay.githubuser.databinding.ItemUserListBinding
 import com.setianjay.githubuser.model.user.UserModel
+import com.setianjay.githubuser.model.user.UsersModel
 import timber.log.Timber
 
 class UserListAdapter(private val listener: OnUserListAdapterListener) : RecyclerView.Adapter<UserListAdapter.ViewHolder>() {
-    private val users: ArrayList<UserModel> = arrayListOf()
+    private val users: ArrayList<UsersModel> = arrayListOf()
 
     interface OnUserListAdapterListener{
-        fun onClick(data: UserModel)
+        fun onClick(data: UsersModel)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -33,21 +34,19 @@ class UserListAdapter(private val listener: OnUserListAdapterListener) : Recycle
     override fun getItemCount(): Int  = users.size
 
     class ViewHolder(private val binding: ItemUserListBinding) : RecyclerView.ViewHolder(binding.root){
-        fun usersBind(user: UserModel, listener: OnUserListAdapterListener){
-            Timber.e("avatar user : ${user.avatar}")
-           Glide
-               .with(binding.ivUser.context)
+        fun usersBind(user: UsersModel, listener: OnUserListAdapterListener){
+           Glide.with(binding.ivUser.context)
                .load(user.avatar)
                .into(binding.ivUser)
 
-            binding.tvUser.text = user.name
-            binding.tvLocation.text = user.location
+            binding.tvUser.text = user.username
+            binding.tvLocation.text = user.type
 
             binding.containerUser.setOnClickListener { listener.onClick(user) }
         }
     }
 
-    fun setDataUser(data: List<UserModel>){
+    fun setDataUser(data: List<UsersModel>){
         users.clear()
         users.addAll(data)
         notifyDataSetChanged()

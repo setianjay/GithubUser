@@ -1,48 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screens.fragment.UserListFragment"
     android:padding="@dimen/padding_21"
-    android:orientation="vertical">
+    tools:context=".screens.fragment.UserListFragment">
 
-        <LinearLayout
+    <LinearLayout
+        android:id="@+id/container_searching"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/sp_search"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/padding_14"
+        android:paddingTop="@dimen/padding_10"
+        android:paddingEnd="@dimen/padding_14"
+        android:paddingBottom="@dimen/padding_10">
+
+        <ImageView
+            android:id="@+id/iv_search"
+            android:layout_width="@dimen/width_24"
+            android:layout_height="@dimen/width_24"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_search" />
+
+        <EditText
+            android:id="@+id/et_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/sp_search"
-            android:orientation="horizontal"
-            android:paddingStart="@dimen/padding_14"
-            android:paddingEnd="@dimen/padding_14"
-            android:paddingTop="@dimen/padding_10"
-            android:paddingBottom="@dimen/padding_10">
+            android:layout_gravity="bottom"
+            android:layout_marginStart="@dimen/margin_10"
+            android:background="@null"
+            android:fontFamily="@font/montserrat_regular"
+            android:hint="@string/find_someone_here"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textSize="@dimen/text_16"
+            tools:ignore="Autofill" />
+    </LinearLayout>
 
-            <ImageView
-                android:id="@+id/iv_search"
-                android:layout_width="@dimen/width_24"
-                android:layout_height="@dimen/width_24"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_search"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_user_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/container_searching"
+        android:visibility="gone" />
 
-            <EditText
-                android:id="@+id/et_search"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:background="@null"
-                android:imeOptions="actionDone"
-                android:inputType="text"
-                android:maxLines="1"
-                android:fontFamily="@font/montserrat_regular"
-                android:hint="@string/find_someone_here"
-                android:textSize="@dimen/text_16"
-                android:layout_marginStart="@dimen/margin_10"
-                tools:ignore="Autofill"/>
-        </LinearLayout>
+    <ProgressBar
+        android:id="@+id/pb_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_user_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/item_user_list"/>
-</LinearLayout>
+    <ImageView
+        android:id="@+id/iv_information"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/app_name"
+        tools:src="@drawable/ic_search_information" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_14"
+        android:layout_below="@id/iv_information"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/montserrat_bold"
+        tools:text="@string/title_search"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_16"/>
+
+    <TextView
+        android:id="@+id/tv_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_7"
+        android:layout_below="@id/tv_title"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/montserrat_bold"
+        tools:text="@string/message_search"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/text_13"/>
+</RelativeLayout>

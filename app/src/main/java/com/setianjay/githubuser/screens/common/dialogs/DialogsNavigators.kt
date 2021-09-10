@@ -10,7 +10,12 @@ import com.setianjay.githubuser.R
 
 class DialogsNavigators(private val context: Context) {
 
-    fun dialogServerError() {
+    interface IOnDialogsNavigator {
+        fun positiveButton(dialog: Dialog)
+        fun negativeButton(dialog: Dialog)
+    }
+
+    fun dialogServerError(listener: IOnDialogsNavigator) {
         val customDialog = Dialog(context).apply {
             this.requestWindowFeature(Window.FEATURE_NO_TITLE)
             this.setContentView(R.layout.dialog_server_error)
@@ -22,8 +27,12 @@ class DialogsNavigators(private val context: Context) {
         val ivClose = customDialog.findViewById<ImageView>(R.id.iv_close)
         val btnTryAgain = customDialog.findViewById<AppCompatButton>(R.id.btn_try_again)
 
-        ivClose.setOnClickListener { customDialog.dismiss() }
-        btnTryAgain.setOnClickListener { customDialog.dismiss() }
+        ivClose.setOnClickListener {
+            listener.negativeButton(customDialog)
+        }
+        btnTryAgain.setOnClickListener {
+            listener.positiveButton(customDialog)
+        }
 
         customDialog.show()
     }

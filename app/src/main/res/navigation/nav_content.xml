@@ -9,14 +9,22 @@
         android:id="@+id/userListFragment"
         android:name="com.setianjay.githubuser.screens.fragment.UserListFragment"
         android:label="fragment_user_list"
-        tools:layout="@layout/fragment_user_list" >
+        tools:layout="@layout/fragment_user_list">
         <action
             android:id="@+id/action_userListFragment_to_userProfileFragment"
             app:destination="@id/userProfileFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/userProfileFragment"
         android:name="com.setianjay.githubuser.screens.fragment.UserProfileFragment"
         android:label="fragment_user_profile"
-        tools:layout="@layout/fragment_user_profile" />
+        tools:layout="@layout/fragment_user_profile">
+        <action
+            android:id="@+id/action_userProfileFragment_to_userListFragment"
+            app:destination="@id/userListFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/userListFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

@@ -23,4 +23,5 @@
     <string name="failed_to_connect_server">Failed to connect to the server</string>
     <string name="something_wrong">Something wrong</string>
     <string name="try_again">Try Again</string>
+    <string name="no_data">~</string>
 </resources>

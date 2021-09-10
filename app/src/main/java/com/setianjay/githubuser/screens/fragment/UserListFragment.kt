@@ -1,5 +1,6 @@
 package com.setianjay.githubuser.screens.fragment
 
+import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -51,13 +52,18 @@ class UserListFragment : Fragment() {
         showImgInformation(true)
     }
 
+    /* function to set of title for current fragment and send the value to HomeActivity */
+    private fun setTitle() {
+        viewModel.setTitle(getString(R.string.home))
+    }
+
     /* function to initialize all listener in this layout */
     private fun initListener() {
         // listener for searching with edit text
         binding.etSearch.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 val username = binding.etSearch.text.toString().trim()
-                if (username.isEmpty()) { // if username is empty, send notification error
+                if (username.isEmpty()) { // if username empty, send notification error
                     binding.etSearch.error = getString(R.string.field_required)
                 } else { // if username not empty, call the search Github API
                     viewModel.searchUsers(username)
@@ -73,19 +79,20 @@ class UserListFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity()).get(GithubViewModel::class.java)
     }
 
-    /* function to set up any observer */
+    /* function to set up any observer in view model */
     private fun setupObserver() {
         // observe for users data and set with value based on condition
         viewModel.getUsers().observe(viewLifecycleOwner) {
             when (it.statusType) {
                 Resource.StatusType.LOADING -> {
+                    context?.hideKeyboard(requireView())
                     showLoading(true)
                     showImgInformation(false)
                     showRecycleView(false)
                 }
                 Resource.StatusType.SUCCESS -> {
-                    context?.hideKeyboard(requireView())
                     showLoading(false)
+                    showImgInformation(false)
                     showRecycleView(true)
                     it.data?.let { users -> userAdapter.setDataUser(users) }
                 }
@@ -121,18 +128,13 @@ class UserListFragment : Fragment() {
         }
     }
 
-    /* function to set of title for current fragment and send the value to HomeActivity */
-    private fun setTitle() {
-        viewModel.setTitle(getString(R.string.home))
-    }
-
     /* function for show image information, IMG_SEARCH_INFORMATION is default. */
     private fun showImgInformation(
         show: Boolean,
         typeInfo: Int = Constant.INFO.IMG_SEARCH_INFORMATION
     ) {
         when (typeInfo) {
-            Constant.INFO.IMG_SEARCH_INFORMATION -> { // typeInfo = 1 (default)
+            Constant.INFO.IMG_SEARCH_INFORMATION -> {
                 if (show) {
                     binding.apply {
                         ivInformation.visibility = View.VISIBLE
@@ -153,7 +155,7 @@ class UserListFragment : Fragment() {
                     }
                 }
             }
-            Constant.INFO.IMG_NOT_FOUND_INFORMATION -> { // typeInfo = 2
+            Constant.INFO.IMG_NOT_FOUND_INFORMATION -> {
                 if (show) {
                     binding.apply {
                         ivInformation.visibility = View.VISIBLE
@@ -190,11 +192,23 @@ class UserListFragment : Fragment() {
     /* function to get error code */
     private fun getError(errorCode: Int) {
         when (errorCode) {
-            Constant.ERROR.ERR_API -> { // errorCode = -1
+            Constant.ERROR.ERR_API -> {
                 // show dialog server error
-                dialogsNavigators.dialogServerError()
+                dialogsNavigators.dialogServerError(object: DialogsNavigators.IOnDialogsNavigator{
+
+                    override fun positiveButton(dialog: Dialog) {
+                        showImgInformation(true)
+                        dialog.dismiss()
+                    }
+
+                    override fun negativeButton(dialog: Dialog) {
+                        showImgInformation(true)
+                        dialog.dismiss()
+                    }
+
+                })
             }
-            Constant.ERROR.ERR_USERS_NOT_FOUND -> { // errorCode -2
+            Constant.ERROR.ERR_USERS_NOT_FOUND -> {
                 // show img information for user not found
                 showImgInformation(true, Constant.INFO.IMG_NOT_FOUND_INFORMATION)
             }

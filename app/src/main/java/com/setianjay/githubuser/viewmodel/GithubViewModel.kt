@@ -17,6 +17,7 @@ class GithubViewModel(private val repository: GithubRepository) : ViewModel() {
     private val users: MutableLiveData<Resource<List<UsersModel>>> = MutableLiveData()
     private val userDetails: MutableLiveData<Resource<UserDetailsModel>> = MutableLiveData()
     private val userFollowers: MutableLiveData<Resource<List<UsersModel>>> = MutableLiveData()
+    private val userFollowing: MutableLiveData<Resource<List<UsersModel>>> = MutableLiveData()
 
     /***** Title *****/
     fun setTitle(title: String) {
@@ -95,4 +96,27 @@ class GithubViewModel(private val repository: GithubRepository) : ViewModel() {
     }
 
     fun getFollowers(): MutableLiveData<Resource<List<UsersModel>>> = userFollowers
+
+    /***** Following *****/
+    fun userFollowing(username: String) = viewModelScope.launch {
+        userFollowing.value = Resource.loading()
+        try {
+            val response = repository.getFollowing(username)
+            if (response.isSuccessful && response.body() != null) {
+                val result = response.body()
+                if (result?.isNotEmpty() == true){
+                    userFollowing.value = Resource.success(response.body())
+                }else{
+                    userFollowing.value = Resource.error(Constant.ERROR.ERR_USERS_NOT_FOUND)
+                }
+            } else {
+                userFollowing.value = Resource.error(Constant.ERROR.ERR_API)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            userFollowing.value = Resource.error(Constant.ERROR.ERR_API)
+        }
+    }
+
+    fun getFollowing(): MutableLiveData<Resource<List<UsersModel>>> = userFollowing
 }

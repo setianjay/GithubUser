@@ -15,7 +15,7 @@ class ProfileTabLayout(
 
     private val fragments: List<Fragment> = listOf(
         FollowersFragment.newInstance(username),
-        FollowingFragment()
+        FollowingFragment.newInstance(username)
     )
 
     override fun getItemCount(): Int = fragments.size

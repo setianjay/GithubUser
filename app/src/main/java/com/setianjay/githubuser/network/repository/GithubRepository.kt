@@ -8,7 +8,7 @@ class GithubRepository(private val githubApi: GithubEndPoint) {
 
     suspend fun getFollowers(username: String) = githubApi.getFollowers(username)
 
-    suspend fun getFollowing(username: String) = githubApi.getFollowers(username)
+    suspend fun getFollowing(username: String) = githubApi.getFollowing(username)
 
     suspend fun searchUsers(username: String) = githubApi.searchUsers(username)
 }

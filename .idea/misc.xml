@@ -5,15 +5,18 @@
       <map>
         <entry key="..\:/Budel/Project Android/GithubUser/app/src/main/res/drawable/background_button_primary.xml" value="0.2703125" />
         <entry key="..\:/Budel/Project Android/GithubUser/app/src/main/res/drawable/background_dialog_server_error.xml" value="0.2703125" />
+        <entry key="..\:/Budel/Project Android/GithubUser/app/src/main/res/drawable/ic_heart.xml" value="0.2703125" />
         <entry key="..\:/Budel/Project Android/GithubUser/app/src/main/res/drawable/ic_person_id.xml" value="0.1648148148148148" />
         <entry key="..\:/Budel/Project Android/GithubUser/app/src/main/res/drawable/ic_server_down.xml" value="0.14739583333333334" />
         <entry key="..\:/Budel/Project Android/GithubUser/app/src/main/res/drawable/ic_user_circle.xml" value="0.2703125" />
         <entry key="..\:/Budel/Project Android/GithubUser/app/src/main/res/drawable/ic_users.xml" value="0.1648148148148148" />
         <entry key="..\:/Budel/Project Android/GithubUser/app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="..\:/Budel/Project Android/GithubUser/app/src/main/res/layout/dialog_server_error.xml" value="0.264" />
+        <entry key="..\:/Budel/Project Android/GithubUser/app/src/main/res/layout/fragment_followers.xml" value="0.176" />
+        <entry key="..\:/Budel/Project Android/GithubUser/app/src/main/res/layout/fragment_following.xml" value="0.11296296296296296" />
         <entry key="..\:/Budel/Project Android/GithubUser/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Budel/Project Android/GithubUser/app/src/main/res/layout/fragment_user_list.xml" value="0.264" />
-        <entry key="..\:/Budel/Project Android/GithubUser/app/src/main/res/layout/fragment_user_profile.xml" value="0.264" />
+        <entry key="..\:/Budel/Project Android/GithubUser/app/src/main/res/layout/fragment_user_profile.xml" value="0.4" />
         <entry key="..\:/Budel/Project Android/GithubUser/app/src/main/res/layout/item_user_list.xml" value="0.536" />
       </map>
     </option>

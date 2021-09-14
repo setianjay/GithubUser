@@ -25,6 +25,8 @@ class UserProfileFragment : Fragment() {
     private var data: UsersModel? = null
     private val dialogsNavigators by lazy { DialogsNavigators(requireContext()) }
 
+    private var username: String? = null
+
     private lateinit var viewModel: GithubViewModel
 
     companion object {
@@ -41,8 +43,8 @@ class UserProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViewModel()
         initData()
+        initViewModel()
         setupObserver()
         setupTabLayout()
     }
@@ -63,13 +65,13 @@ class UserProfileFragment : Fragment() {
         val bundle = arguments
         if (bundle != null) {
             data = bundle.getParcelable(EXTRA_PROFILE)
+            username = data?.username
         }
     }
 
-    /* function to show details of user*/
+    /* function to show details of user */
     private fun showDetails() {
-        val username = data?.username
-        if (username != null) viewModel.userDetails(username)
+        username?.let { viewModel.userDetails(it) }
     }
 
     /* function to initialize view model */
@@ -79,7 +81,7 @@ class UserProfileFragment : Fragment() {
 
     /* function to set up any observer in view model */
     private fun setupObserver() {
-        // observe for user details data and set with value based on condition
+        // observe for details of user and set with value based on condition
         viewModel.getUserDetails().observe(viewLifecycleOwner) {
             when (it.statusType) {
                 Resource.StatusType.LOADING -> {
@@ -127,7 +129,7 @@ class UserProfileFragment : Fragment() {
 
     /* function to setup tab layout and viewpager */
     private fun setupTabLayout() {
-        val tabAdapter = ProfileTabLayout(childFragmentManager, lifecycle)
+        val tabAdapter = username?.let { ProfileTabLayout(childFragmentManager, lifecycle, it) }
         binding.vwPager.adapter = tabAdapter
 
         val titlesTabLayout = listOf(getString(R.string.followers), getString(R.string.following))

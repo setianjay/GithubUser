@@ -24,4 +24,7 @@
     <string name="something_wrong">Something wrong</string>
     <string name="try_again">Try Again</string>
     <string name="no_data">~</string>
+    <string name="no_followers">No Followers</string>
+    <string name="no_following">No Following</string>
+    <string name="refresh">Refresh</string>
 </resources>

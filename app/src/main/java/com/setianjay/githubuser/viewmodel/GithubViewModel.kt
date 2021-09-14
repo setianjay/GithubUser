@@ -12,38 +12,40 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class GithubViewModel(private val repository: GithubRepository): ViewModel() {
+class GithubViewModel(private val repository: GithubRepository) : ViewModel() {
     private val title: MutableLiveData<String> = MutableLiveData()
     private val users: MutableLiveData<Resource<List<UsersModel>>> = MutableLiveData()
     private val userDetails: MutableLiveData<Resource<UserDetailsModel>> = MutableLiveData()
+    private val userFollowers: MutableLiveData<Resource<List<UsersModel>>> = MutableLiveData()
 
-
-    fun setTitle(title: String){
+    /***** Title *****/
+    fun setTitle(title: String) {
         this.title.postValue(title)
     }
 
     fun getTitle(): MutableLiveData<String> = title
 
+    /***** Search *****/
     fun searchUsers(username: String) = viewModelScope.launch {
         users.value = Resource.loading()
-        delay(1_000L)
+        delay(500L)
         try {
             val response = repository.searchUsers(username)
-            if (response.isSuccessful && response.body() != null){
+            if (response.isSuccessful && response.body() != null) {
                 val result = response.body()?.totalCount
-                if (result != null){
-                    if (result > 0){
+                if (result != null) {
+                    if (result > 0) {
                         users.value = Resource.success(response.body()?.users)
-                    }else{
+                    } else {
                         // ERROR USER NOT FOUND
                         users.value = Resource.error(Constant.ERROR.ERR_USERS_NOT_FOUND)
                     }
                 }
-            }else{
+            } else {
                 // ERROR API
                 users.value = Resource.error(Constant.ERROR.ERR_API)
             }
-        }catch (e: Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
             users.value = Resource.error(Constant.ERROR.ERR_API)
         }
@@ -51,21 +53,46 @@ class GithubViewModel(private val repository: GithubRepository): ViewModel() {
 
     fun getUsers(): MutableLiveData<Resource<List<UsersModel>>> = users
 
+    /***** Details *****/
     fun userDetails(username: String) = viewModelScope.launch {
         userDetails.value = Resource.loading()
-        delay(1_000L)
+        delay(500L)
         try {
             val response = repository.getDetails(username)
-            if(response.isSuccessful && response.body() != null){
+            if (response.isSuccessful && response.body() != null) {
                 userDetails.value = Resource.success(response.body())
-            }else{
+            } else {
                 userDetails.value = Resource.error(Constant.ERROR.ERR_API)
             }
-        }catch (e: Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
             userDetails.value = Resource.error(Constant.ERROR.ERR_API)
         }
     }
 
     fun getUserDetails(): MutableLiveData<Resource<UserDetailsModel>> = userDetails
+
+    /***** Followers *****/
+    fun userFollowers(username: String) = viewModelScope.launch {
+        userFollowers.value = Resource.loading()
+        delay(10L)
+        try {
+            val response = repository.getFollowers(username)
+            if (response.isSuccessful && response.body() != null) {
+                val result = response.body()
+                if (result?.isNotEmpty() == true){
+                    userFollowers.value = Resource.success(response.body())
+                }else{
+                    userFollowers.value = Resource.error(Constant.ERROR.ERR_USERS_NOT_FOUND)
+                }
+            } else {
+                userFollowers.value = Resource.error(Constant.ERROR.ERR_API)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            userFollowers.value = Resource.error(Constant.ERROR.ERR_API)
+        }
+    }
+
+    fun getFollowers(): MutableLiveData<Resource<List<UsersModel>>> = userFollowers
 }

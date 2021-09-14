@@ -9,10 +9,14 @@ import com.setianjay.githubuser.screens.fragment.FollowingFragment
 
 class ProfileTabLayout(
     fragmentManager: FragmentManager,
-    lifecycle: Lifecycle
+    lifecycle: Lifecycle,
+    username: String
 ) : FragmentStateAdapter(fragmentManager, lifecycle) {
 
-    private val fragments: List<Fragment> = listOf(FollowersFragment(), FollowingFragment())
+    private val fragments: List<Fragment> = listOf(
+        FollowersFragment.newInstance(username),
+        FollowingFragment()
+    )
 
     override fun getItemCount(): Int = fragments.size
 

@@ -1,6 +1,5 @@
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -9,11 +8,11 @@
         android:id="@+id/pb_loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:visibility="gone" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/container_profile"
@@ -202,11 +201,21 @@
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/gray_soft" />
+
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tb_layout"
                 style="@style/tab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/gray_soft"/>
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -222,8 +231,10 @@
             android:layout_height="@dimen/height_56"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/margin_20"
+            android:backgroundTint="@color/dark_blue"
             android:contentDescription="@string/name"
             android:src="@drawable/ic_heart"
+            app:tint="@null"
             app:borderWidth="@dimen/zero" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,7 +19,7 @@
     <!-- Tab Layout -->
     <style name="tab" parent="Widget.Design.TabLayout">
         <item name="tabTextAppearance">@style/tabLayoutStyle</item>
-        <item name="tabIndicatorColor">?attr/colorAccent</item>
+        <item name="tabIndicatorColor">@color/dark_blue</item>
         <item name="tabSelectedTextColor">@color/black</item>
     </style>
 

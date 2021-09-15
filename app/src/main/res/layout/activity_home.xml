@@ -26,29 +26,18 @@
             android:text="@string/home"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="@dimen/margin_27"/>
-
-        <ImageView
-            android:id="@+id/iv_favorite"
-            android:layout_width="@dimen/width_24"
-            android:layout_height="@dimen/height_24"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_heart"
-            app:layout_constraintEnd_toEndOf="@id/iv_menus"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginEnd="@dimen/margin_40"
-            android:layout_marginTop="@dimen/margin_32"
-            android:visibility="invisible"/>
+            android:layout_marginTop="@dimen/margin_27" />
 
         <ImageView
             android:id="@+id/iv_menus"
+            android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="@string/app_name"
             android:layout_width="@dimen/width_24"
             android:layout_height="@dimen/height_24"
-            android:contentDescription="@string/app_name"
             android:src="@drawable/ic_menu"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="@dimen/margin_32"/>
+            android:layout_marginTop="@dimen/margin_32" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.fragment.app.FragmentContainerView
@@ -57,5 +46,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_content"/>
+        app:navGraph="@navigation/nav_content" />
 </LinearLayout>

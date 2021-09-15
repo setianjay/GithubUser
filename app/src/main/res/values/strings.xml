@@ -27,4 +27,5 @@
     <string name="no_followers">No Followers</string>
     <string name="no_following">No Following</string>
     <string name="refresh">Refresh</string>
+    <string name="change_language">Change Language</string>
 </resources>

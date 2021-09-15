@@ -1,5 +1,6 @@
 package com.setianjay.githubuser.screens.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -20,24 +21,28 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        initViewModel()
         initListener()
+        initViewModel()
         setupObserver()
     }
 
+    /* function to initialize view model */
     private fun initViewModel(){
         viewModel = ViewModelProvider(
             this@HomeActivity,
             GithubViewModelFactory(ApiService.githubApi)
         ).get(GithubViewModel::class.java)
     }
-    
+
+    /* function to initialize all listener in this layout */
     private fun initListener(){
+        // listener for show pop up menu
         binding.ivMenus.setOnClickListener {
             showPopupMenu()
         }
     }
 
+    /* function for show of pop up menu*/
     private fun showPopupMenu(){
         val popupMenu = PopupMenu(this,binding.ivMenus)
         popupMenu.menuInflater.inflate(R.menu.popup_menu,popupMenu.menu)
@@ -48,7 +53,9 @@ class HomeActivity : AppCompatActivity() {
                     Toast.makeText(this@HomeActivity, "Under Development", Toast.LENGTH_SHORT).show()
                 }
                 R.id.settings -> {
-                    Toast.makeText(this@HomeActivity, "Under Development", Toast.LENGTH_SHORT).show()
+                    Intent(this@HomeActivity, SettingsActivity::class.java).also {
+                        startActivity(it)
+                    }
                 }
             }
             true
@@ -57,6 +64,7 @@ class HomeActivity : AppCompatActivity() {
         popupMenu.show()
     }
 
+    /* function to set up any observer in view model */
     private fun setupObserver(){
         // observe for the title and set with value if any update from current fragment
         viewModel.getTitle().observe(this@HomeActivity){ title ->

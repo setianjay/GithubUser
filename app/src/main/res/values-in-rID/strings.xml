@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GithubUser</string>
+    <string name="find_someone_on_github">Temukan seseorang di Github</string>
+    <string name="let_s_find_out">Ayo Cari Tahu</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="find_someone_here">Temukan seseorang disini</string>
+    <string name="home">Beranda</string>
+    <string name="location">New Delhi, India</string>
+    <string name="name">Sharukh Khan</string>
+    <string name="number">100000</string>
+    <string name="repository">Repository</string>
+    <string name="followers">Pengikut</string>
+    <string name="following">Mengikuti</string>
+    <string name="company">MindorksOpenSource</string>
+    <string name="profile">Profil</string>
+    <string name="favorites">Favorit</string>
+    <string name="settings">Pengaturan</string>
+    <string name="title_search">Ayo temukan seseorang</string>
+    <string name="message_search">Temukan temanmu atau teman kerjamu</string>
+    <string name="title_not_found">Pengguna tidak ditemukan</string>
+    <string name="message_not_found">Pastikan nama pengguna benar</string>
+    <string name="field_required">Field tidak boleh kosong</string>
+    <string name="failed_to_connect_server">Gagal terhubung ke server</string>
+    <string name="something_wrong">Ada masalah</string>
+    <string name="try_again">Coba Lagi</string>
+    <string name="no_data">~</string>
+    <string name="no_followers">Tidak ada Pengikut</string>
+    <string name="no_following">Tidak ada Mengikuti</string>
+    <string name="refresh">Segarkan</string>
+    <string name="change_language">Ubah Bahasa</string>
+</resources>

@@ -23,6 +23,7 @@
     <dimen name="margin_17">17dp</dimen>
     <dimen name="margin_18">18dp</dimen>
     <dimen name="margin_20">20dp</dimen>
+    <dimen name="margin_21">21dp</dimen>
     <dimen name="margin_23">23dp</dimen>
     <dimen name="margin_25">25dp</dimen>
     <dimen name="margin_27">27dp</dimen>
@@ -31,6 +32,7 @@
     <dimen name="margin_33">33dp</dimen>
     <dimen name="margin_40">40dp</dimen>
     <dimen name="margin_66">66dp</dimen>
+    <dimen name="margin_100">100dp</dimen>
 
     <!-- dimen padding -->
     <dimen name="padding_10">10dp</dimen>
@@ -40,6 +42,7 @@
     <dimen name="padding_21">21dp</dimen>
     <dimen name="padding_23">23dp</dimen>
     <dimen name="padding_28">28dp</dimen>
+    <dimen name="padding_32">32dp</dimen>
 
     <!-- dimen radius -->
     <dimen name="radius_15">15dp</dimen>
@@ -64,4 +67,5 @@
     <dimen name="width_250">250dp</dimen>
     <dimen name="width_185">185dp</dimen>
     <dimen name="height_38">38dp</dimen>
+    <dimen name="margin_41">41dp</dimen>
 </resources>

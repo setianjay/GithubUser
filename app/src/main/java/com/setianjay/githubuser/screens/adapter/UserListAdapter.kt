@@ -7,12 +7,14 @@ import com.bumptech.glide.Glide
 import com.setianjay.githubuser.databinding.ItemUserListBinding
 import com.setianjay.githubuser.model.user.UserModel
 import com.setianjay.githubuser.model.user.UsersModel
+import com.setianjay.githubuser.utill.load
 import timber.log.Timber
 
-class UserListAdapter(private val listener: OnUserListAdapterListener) : RecyclerView.Adapter<UserListAdapter.ViewHolder>() {
+class UserListAdapter(private val listener: OnUserListAdapterListener) :
+    RecyclerView.Adapter<UserListAdapter.ViewHolder>() {
     private val users: ArrayList<UsersModel> = arrayListOf()
 
-    interface OnUserListAdapterListener{
+    interface OnUserListAdapterListener {
         fun onClick(data: UsersModel)
     }
 
@@ -31,13 +33,12 @@ class UserListAdapter(private val listener: OnUserListAdapterListener) : Recycle
         holder.usersBind(user = user, listener)
     }
 
-    override fun getItemCount(): Int  = users.size
+    override fun getItemCount(): Int = users.size
 
-    class ViewHolder(private val binding: ItemUserListBinding) : RecyclerView.ViewHolder(binding.root){
-        fun usersBind(user: UsersModel, listener: OnUserListAdapterListener){
-           Glide.with(binding.ivUser.context)
-               .load(user.avatar)
-               .into(binding.ivUser)
+    class ViewHolder(private val binding: ItemUserListBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun usersBind(user: UsersModel, listener: OnUserListAdapterListener) {
+            user.avatar?.let { binding.ivUser.load(it) }
 
             binding.tvUser.text = user.username
             binding.tvLocation.text = user.type
@@ -46,7 +47,7 @@ class UserListAdapter(private val listener: OnUserListAdapterListener) : Recycle
         }
     }
 
-    fun setDataUser(data: List<UsersModel>){
+    fun setDataUser(data: List<UsersModel>) {
         users.clear()
         users.addAll(data)
         notifyDataSetChanged()

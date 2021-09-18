@@ -6,7 +6,7 @@ import android.os.Bundle
 import com.setianjay.githubuser.databinding.ScreenSplashBinding
 import com.setianjay.githubuser.screens.common.animations.Animations
 
-class SplashScreen : AppCompatActivity() {
+class SplashScreenActivity : AppCompatActivity() {
     private val binding: ScreenSplashBinding by lazy { ScreenSplashBinding.inflate(layoutInflater) }
     private val animations: Animations by lazy { Animations(this) }
 
@@ -36,7 +36,7 @@ class SplashScreen : AppCompatActivity() {
     private fun initListener(){
         binding.btnMove.setOnClickListener{
             startActivity(
-                Intent(this@SplashScreen, HomeActivity::class.java)
+                Intent(this@SplashScreenActivity, HomeActivity::class.java)
             )
             finish()
         }

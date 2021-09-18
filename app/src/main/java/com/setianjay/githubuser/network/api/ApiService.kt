@@ -1,5 +1,6 @@
 package com.setianjay.githubuser.network.api
 
+import com.setianjay.githubuser.BuildConfig
 import com.setianjay.githubuser.utill.Constant
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -16,7 +17,7 @@ class ApiService {
             .addInterceptor(interceptor)
             .addInterceptor { chain ->
                 val request = chain.request().newBuilder()
-                    .addHeader("Authorization", Constant.API.TOKEN)
+                    .addHeader("Authorization", BuildConfig.GITHUB_TOKEN)
                     .build()
                 chain.proceed(request)
             }

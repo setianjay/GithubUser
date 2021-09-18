@@ -1,44 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="@dimen/padding_32"
-    android:paddingBottom="@dimen/padding_21"
-    tools:context=".screens.activity.SettingsActivity">
-
-    <ImageView
-        android:id="@+id/iv_back"
-        android:background="?android:attr/selectableItemBackground"
-        android:contentDescription="@string/app_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="@dimen/margin_21"
-        android:paddingTop="8dp"
-        android:src="@drawable/ic_back" />
-
-    <TextView
-        android:id="@+id/tv_page"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/iv_back"
-        android:layout_alignBottom="@+id/iv_back"
-        android:layout_centerHorizontal="true"
-        android:fontFamily="@font/merienda_regular"
-        android:text="@string/settings"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_24"
-        android:textStyle="bold" />
-
-    <View
-        android:id="@+id/vw_page"
-        android:background="@color/gray_soft"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_below="@id/tv_page"
-        android:layout_marginTop="10dp" />
+    android:orientation="vertical"
+    tools:context=".screens.fragment.SettingsFragment">
 
     <LinearLayout
         android:id="@+id/container_language"
@@ -47,7 +13,6 @@
         android:focusable="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/vw_page"
         android:layout_marginTop="@dimen/margin_10"
         android:paddingStart="@dimen/padding_21"
         android:paddingTop="@dimen/padding_10"
@@ -83,4 +48,12 @@
             android:src="@drawable/ic_next" />
 
     </LinearLayout>
-</RelativeLayout>
+
+    <View
+        android:id="@+id/vw_page"
+        android:background="@color/gray_soft"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="@dimen/margin_8"/>
+
+</LinearLayout>

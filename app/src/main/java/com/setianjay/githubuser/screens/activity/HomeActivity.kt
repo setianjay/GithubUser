@@ -1,12 +1,12 @@
 package com.setianjay.githubuser.screens.activity
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.setianjay.githubuser.R
 import com.setianjay.githubuser.databinding.ActivityHomeBinding
 import com.setianjay.githubuser.network.api.ApiService
@@ -26,14 +26,6 @@ class HomeActivity : AppCompatActivity() {
         setupObserver()
     }
 
-    /* function to initialize view model */
-    private fun initViewModel(){
-        viewModel = ViewModelProvider(
-            this@HomeActivity,
-            GithubViewModelFactory(ApiService.githubApi)
-        ).get(GithubViewModel::class.java)
-    }
-
     /* function to initialize all listener in this layout */
     private fun initListener(){
         // listener for show pop up menu
@@ -44,6 +36,8 @@ class HomeActivity : AppCompatActivity() {
 
     /* function for show of pop up menu*/
     private fun showPopupMenu(){
+        val navController = findNavController(R.id.nav_host_fragment_container)
+
         val popupMenu = PopupMenu(this,binding.ivMenus)
         popupMenu.menuInflater.inflate(R.menu.popup_menu,popupMenu.menu)
 
@@ -53,15 +47,22 @@ class HomeActivity : AppCompatActivity() {
                     Toast.makeText(this@HomeActivity, "Under Development", Toast.LENGTH_SHORT).show()
                 }
                 R.id.settings -> {
-                    Intent(this@HomeActivity, SettingsActivity::class.java).also {
-                        startActivity(it)
-                    }
+                    navController.navigateUp()
+                    navController.navigate(R.id.settingsFragment)
                 }
             }
             true
         }
 
         popupMenu.show()
+    }
+
+    /* function to initialize view model */
+    private fun initViewModel(){
+        viewModel = ViewModelProvider(
+            this@HomeActivity,
+            GithubViewModelFactory(ApiService.githubApi)
+        ).get(GithubViewModel::class.java)
     }
 
     /* function to set up any observer in view model */

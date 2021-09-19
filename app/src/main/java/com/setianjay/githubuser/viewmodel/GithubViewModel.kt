@@ -1,5 +1,6 @@
 package com.setianjay.githubuser.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -24,7 +25,7 @@ class GithubViewModel(private val repository: GithubRepository) : ViewModel() {
         this.title.postValue(title)
     }
 
-    fun getTitle(): MutableLiveData<String> = title
+    fun getTitle(): LiveData<String> = title
 
     /***** Search *****/
     fun searchUsers(username: String) = viewModelScope.launch {
@@ -52,7 +53,7 @@ class GithubViewModel(private val repository: GithubRepository) : ViewModel() {
         }
     }
 
-    fun getUsers(): MutableLiveData<Resource<List<UsersModel>>> = users
+    fun getUsers(): LiveData<Resource<List<UsersModel>>> = users
 
     /***** Details *****/
     fun userDetails(username: String) = viewModelScope.launch {
@@ -71,7 +72,7 @@ class GithubViewModel(private val repository: GithubRepository) : ViewModel() {
         }
     }
 
-    fun getUserDetails(): MutableLiveData<Resource<UserDetailsModel>> = userDetails
+    fun getUserDetails(): LiveData<Resource<UserDetailsModel>> = userDetails
 
     /***** Followers *****/
     fun userFollowers(username: String) = viewModelScope.launch {
@@ -95,7 +96,7 @@ class GithubViewModel(private val repository: GithubRepository) : ViewModel() {
         }
     }
 
-    fun getFollowers(): MutableLiveData<Resource<List<UsersModel>>> = userFollowers
+    fun getFollowers(): LiveData<Resource<List<UsersModel>>> = userFollowers
 
     /***** Following *****/
     fun userFollowing(username: String) = viewModelScope.launch {
@@ -118,5 +119,5 @@ class GithubViewModel(private val repository: GithubRepository) : ViewModel() {
         }
     }
 
-    fun getFollowing(): MutableLiveData<Resource<List<UsersModel>>> = userFollowing
+    fun getFollowing(): LiveData<Resource<List<UsersModel>>> = userFollowing
 }

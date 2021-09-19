@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.setianjay.githubuser.databinding.FragmentFollowingBinding
 import com.setianjay.githubuser.model.user.UsersModel
@@ -21,7 +21,9 @@ class FollowingFragment private constructor() : Fragment() {
     private lateinit var userAdapter: UserListAdapter
     private var username: String? = null
 
-    private lateinit var viewModel: GithubViewModel
+    private val viewModel by viewModels<GithubViewModel>({
+        requireActivity()
+    })
 
     companion object{
         private const val ARG_USERNAME = "username"
@@ -47,7 +49,6 @@ class FollowingFragment private constructor() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initData()
-        initViewModel()
         setupObserver()
         setupRecycleView()
     }
@@ -60,11 +61,6 @@ class FollowingFragment private constructor() : Fragment() {
     /* function to initialize data */
     private fun initData(){
         username = arguments?.getString(ARG_USERNAME)
-    }
-
-    /* function to initialize view model */
-    private fun initViewModel(){
-        viewModel = ViewModelProvider(requireActivity()).get(GithubViewModel::class.java)
     }
 
     /* function to set up any observer in view model */
@@ -107,12 +103,12 @@ class FollowingFragment private constructor() : Fragment() {
         username?.let { viewModel.userFollowing(it) }
     }
 
-    /* function to show progress bar for loading content */
+    /* function to show and not show progress bar for loading content */
     private fun showLoading(show: Boolean){
         binding.pbLoading.visibility = if(show) View.VISIBLE else View.GONE
     }
 
-    /* function to show button refresh */
+    /* function to show and not show button refresh */
     private fun showBtnRefresh(show: Boolean){
         binding.btnRefresh.visibility = if (show) View.VISIBLE else View.GONE
     }

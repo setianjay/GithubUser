@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.setianjay.githubuser.R
@@ -28,7 +28,9 @@ class UserListFragment : Fragment() {
 
     private lateinit var userAdapter: UserListAdapter
 
-    private lateinit var viewModel: GithubViewModel
+    private val viewModel by viewModels<GithubViewModel>({
+        requireActivity()
+    })
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +43,6 @@ class UserListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initListener()
-        initViewModel()
         setupObserver()
         setupRecycleView()
     }
@@ -72,11 +73,6 @@ class UserListFragment : Fragment() {
             }
             false
         }
-    }
-
-    /* function to initialize view model */
-    private fun initViewModel() {
-        viewModel = ViewModelProvider(requireActivity()).get(GithubViewModel::class.java)
     }
 
     /* function to set up any observer in view model */
@@ -128,7 +124,7 @@ class UserListFragment : Fragment() {
         }
     }
 
-    /* function for show image information, IMG_SEARCH_INFORMATION is default. */
+    /* function for show and not show image information, IMG_SEARCH_INFORMATION is default. */
     private fun showImgInformation(
         show: Boolean,
         typeInfo: Int = Constant.INFO.IMG_SEARCH_INFORMATION
@@ -179,12 +175,12 @@ class UserListFragment : Fragment() {
         }
     }
 
-    /* function to show progress bar for loading content */
+    /* function to show and not show progress bar for loading content */
     private fun showLoading(show: Boolean) {
         binding.pbLoading.visibility = if (show) View.VISIBLE else View.GONE
     }
 
-    /* function to show recycle view */
+    /* function to show and not show recycle view */
     private fun showRecycleView(show: Boolean) {
         binding.rvUserList.visibility = if (show) View.VISIBLE else View.GONE
     }

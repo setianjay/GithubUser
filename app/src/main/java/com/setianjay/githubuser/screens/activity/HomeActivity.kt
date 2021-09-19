@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.PopupMenu
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.setianjay.githubuser.R
@@ -16,13 +17,14 @@ import com.setianjay.githubuser.viewmodel.GithubViewModelFactory
 class HomeActivity : AppCompatActivity() {
     private val binding by lazy { ActivityHomeBinding.inflate(layoutInflater) }
 
-    private lateinit var viewModel: GithubViewModel
+    private val viewModelFactory by lazy { GithubViewModelFactory(ApiService.githubApi) }
+
+    private val viewModel by viewModels<GithubViewModel> { viewModelFactory }
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         initListener()
-        initViewModel()
         setupObserver()
     }
 
@@ -55,14 +57,6 @@ class HomeActivity : AppCompatActivity() {
         }
 
         popupMenu.show()
-    }
-
-    /* function to initialize view model */
-    private fun initViewModel(){
-        viewModel = ViewModelProvider(
-            this@HomeActivity,
-            GithubViewModelFactory(ApiService.githubApi)
-        ).get(GithubViewModel::class.java)
     }
 
     /* function to set up any observer in view model */

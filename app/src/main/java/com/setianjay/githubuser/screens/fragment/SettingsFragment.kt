@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.setianjay.githubuser.R
 import com.setianjay.githubuser.databinding.FragmentSettingsBinding
 import com.setianjay.githubuser.viewmodel.GithubViewModel
@@ -15,7 +15,9 @@ class SettingsFragment : Fragment() {
     private var _binding: FragmentSettingsBinding? = null
     private val binding: FragmentSettingsBinding get() = _binding!!
 
-    private lateinit var viewModel: GithubViewModel
+    private val viewModel by viewModels<GithubViewModel>({
+        requireActivity()
+    })
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,7 +31,6 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initListener()
-        initViewModel()
     }
 
     override fun onStart() {
@@ -50,11 +51,6 @@ class SettingsFragment : Fragment() {
                 startActivity(it)
             }
         }
-    }
-
-    /* function to initialize view model */
-    private fun initViewModel(){
-        viewModel = ViewModelProvider(requireActivity()).get(GithubViewModel::class.java)
     }
 
     override fun onDestroy() {

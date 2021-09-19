@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
@@ -27,7 +27,9 @@ class UserProfileFragment : Fragment() {
 
     private var username: String? = null
 
-    private lateinit var viewModel: GithubViewModel
+    private val viewModel by viewModels<GithubViewModel>({
+        requireActivity()
+    })
 
     companion object {
         const val EXTRA_PROFILE = "extra_profile"
@@ -44,7 +46,6 @@ class UserProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initData()
-        initViewModel()
         setupObserver()
         setupTabLayout()
     }
@@ -72,11 +73,6 @@ class UserProfileFragment : Fragment() {
     /* function to show details of user */
     private fun showDetails() {
         username?.let { viewModel.userDetails(it) }
-    }
-
-    /* function to initialize view model */
-    private fun initViewModel() {
-        viewModel = ViewModelProvider(requireActivity()).get(GithubViewModel::class.java)
     }
 
     /* function to set up any observer in view model */
@@ -138,12 +134,12 @@ class UserProfileFragment : Fragment() {
         }.attach()
     }
 
-    /* function to show progress bar for loading content */
+    /* function to show and not show progress bar for loading content */
     private fun showLoading(show: Boolean) {
         binding.pbLoading.visibility = if (show) View.VISIBLE else View.GONE
     }
 
-    /* function to show the detail profile content */
+    /* function to show and not show the detail profile content */
     private fun showContentDetail(show: Boolean) {
         binding.containerProfile.visibility = if (show) View.VISIBLE else View.GONE
     }

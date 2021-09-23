@@ -7,6 +7,10 @@ object Constant {
         const val BASE_URL = "https://api.github.com/"
     }
 
+    object DATABASE{
+        const val DB_NAME = "app_db"
+    }
+
     object ERROR{
         const val ERR_API = -1
         const val ERR_USERS_NOT_FOUND = -2

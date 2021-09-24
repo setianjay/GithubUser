@@ -23,7 +23,5 @@ class GithubRepository(
 
     suspend fun deleteUserFavorite(user: User) = db.userDao().deleteFavorite(user)
 
-    fun getUser(): Flow<List<User>> = db.userDao().getUsers()
-
-    fun getSpecificUser(username: String): Flow<User> = db.userDao().getSpecificUser(username)
+    fun getSpecificUser(username: String): Flow<User?> = db.userDao().getSpecificUser(username)
 }

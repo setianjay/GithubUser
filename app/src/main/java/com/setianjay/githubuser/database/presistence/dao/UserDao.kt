@@ -11,7 +11,7 @@ interface UserDao {
     fun getUsers(): Flow<List<User>>
 
     @Query("SELECT * FROM tb_user WHERE username = :username")
-    fun getSpecificUser(username: String): Flow<User>
+    fun getSpecificUser(username: String): Flow<User?>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addFavorite(user: User)

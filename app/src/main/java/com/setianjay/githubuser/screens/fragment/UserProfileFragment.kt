@@ -8,24 +8,28 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import com.setianjay.githubuser.R
+import com.setianjay.githubuser.database.presistence.entity.User
 import com.setianjay.githubuser.databinding.FragmentUserProfileBinding
 import com.setianjay.githubuser.model.user.UsersModel
 import com.setianjay.githubuser.network.resource.Resource
 import com.setianjay.githubuser.screens.common.dialogs.DialogsNavigators
 import com.setianjay.githubuser.screens.common.tablayout.ProfileTabLayout
+import com.setianjay.githubuser.utill.*
 import com.setianjay.githubuser.viewmodel.GithubViewModel
 
-class UserProfileFragment : Fragment() {
+class UserProfileFragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentUserProfileBinding? = null
     private val binding get() = _binding!!
 
     private var data: UsersModel? = null
     private val dialogsNavigators by lazy { DialogsNavigators(requireContext()) }
 
-    private var username: String? = null
+    private var isUserExists = false
+
+    private lateinit var type: String
+    private lateinit var username: String
 
     private val viewModel by viewModels<GithubViewModel>({
         requireActivity()
@@ -46,19 +50,16 @@ class UserProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initData()
+        initListener()
         setupObserver()
         setupTabLayout()
     }
 
     override fun onStart() {
         super.onStart()
+        checkUser()
         setTitle()
         showDetails()
-    }
-
-    /* function to set of title for current fragment and send the value to HomeActivity */
-    private fun setTitle() {
-        viewModel.setTitle(getString(R.string.profile))
     }
 
     /* function to initialize data */
@@ -66,13 +67,36 @@ class UserProfileFragment : Fragment() {
         val bundle = arguments
         if (bundle != null) {
             data = bundle.getParcelable(EXTRA_PROFILE)
-            username = data?.username
+            type = data?.type.toString()
+            username = data?.username.toString()
         }
+    }
+
+    /* function to handle listener for each view in this layout */
+    private fun initListener(){
+        binding.fabProfile.setOnClickListener(this)
+    }
+
+    /* function to check user is exist or not exist in local persistence */
+    private fun checkUser(){
+        // observe for the result of specific user
+        viewModel.checkUserExists(username).observe(viewLifecycleOwner){ user ->
+            // if user is not null (user is exist in local persistence)
+            if (user != null){
+                setSrcFab(R.drawable.ic_heart_red)
+                isUserExists = true
+            }
+        }
+    }
+
+    /* function to set of title for current fragment and send the value to HomeActivity */
+    private fun setTitle() {
+        viewModel.setTitle(getString(R.string.profile))
     }
 
     /* function to show details of user */
     private fun showDetails() {
-        username?.let { viewModel.userDetails(it) }
+       viewModel.userDetails(username)
     }
 
     /* function to set up any observer in view model */
@@ -87,9 +111,7 @@ class UserProfileFragment : Fragment() {
                 Resource.StatusType.SUCCESS -> {
                     showLoading(false)
                     showContentDetail(true)
-                    Glide.with(binding.ivProfile.context)
-                        .load(it.data?.avatar)
-                        .into(binding.ivProfile)
+                    it.data?.avatar?.let { src -> binding.ivProfile.load(src) }
 
                     binding.apply {
                         tvRepository.text = it.data?.totalRepository.toString()
@@ -125,7 +147,7 @@ class UserProfileFragment : Fragment() {
 
     /* function to setup tab layout and viewpager */
     private fun setupTabLayout() {
-        val tabAdapter = username?.let { ProfileTabLayout(childFragmentManager, lifecycle, it) }
+        val tabAdapter = ProfileTabLayout(childFragmentManager, lifecycle, username)
         binding.vwPager.adapter = tabAdapter
 
         val titlesTabLayout = listOf(getString(R.string.followers), getString(R.string.following))
@@ -142,6 +164,28 @@ class UserProfileFragment : Fragment() {
     /* function to show and not show the detail profile content */
     private fun showContentDetail(show: Boolean) {
         binding.containerProfile.visibility = if (show) View.VISIBLE else View.GONE
+    }
+
+    /* function to set image source for floating action button */
+    private fun setSrcFab(drawable: Int){
+        binding.fabProfile.src(resources, drawable)
+    }
+
+    override fun onClick(v: View?) {
+        if (v?.id == R.id.fab_profile){
+            val user = User(username, type)
+            if(isUserExists){ // if isUserExists is true (user is exists in local persistence)
+                viewModel.deleteUserFavorite(user)
+                setSrcFab(R.drawable.ic_heart)
+                isUserExists = false
+                AppUtil.showToast(requireContext(), getString(R.string.favorites_remove, username))
+            }else{ // if isUserExists is false (user don't have exists in local persistence)
+                viewModel.addUserFavorite(user)
+                setSrcFab(R.drawable.ic_heart_red)
+                isUserExists = true
+                AppUtil.showToast(requireContext(), getString(R.string.favorites_add, username))
+            }
+        }
     }
 
     override fun onDestroy() {

@@ -1,9 +1,7 @@
 package com.setianjay.githubuser.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.setianjay.githubuser.database.presistence.entity.User
 import com.setianjay.githubuser.model.user.UserDetailsModel
 import com.setianjay.githubuser.model.user.UsersModel
 import com.setianjay.githubuser.network.repository.GithubRepository
@@ -120,4 +118,17 @@ class GithubViewModel(private val repository: GithubRepository) : ViewModel() {
     }
 
     fun getFollowing(): LiveData<Resource<List<UsersModel>>> = userFollowing
+
+    /***** Add User Favorite *****/
+    fun addUserFavorite(user: User) = viewModelScope.launch {
+        repository.addUserFavorite(user)
+    }
+
+    /***** Add User Favorite *****/
+    fun deleteUserFavorite(user: User) = viewModelScope.launch {
+        repository.deleteUserFavorite(user)
+    }
+
+    /***** Add User Favorite *****/
+    fun checkUserExists(username: String): LiveData<User?> = repository.getSpecificUser(username).asLiveData()
 }

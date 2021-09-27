@@ -70,7 +70,7 @@ class HomeActivity : AppCompatActivity() {
     /* function to set up any observer in view model */
     private fun setupObserver() {
         // observe for the title and set with value if any update from current fragment
-        viewModel.getTitle().observe(this@HomeActivity) { title ->
+        viewModel.app.getTitle().observe(this@HomeActivity) { title ->
             binding.tvPage.text = title
         }
     }

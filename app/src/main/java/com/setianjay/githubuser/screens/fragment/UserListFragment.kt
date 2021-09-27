@@ -55,7 +55,7 @@ class UserListFragment : Fragment() {
 
     /* function to set of title for current fragment and send the value to HomeActivity */
     private fun setTitle() {
-        viewModel.setTitle(getString(R.string.home))
+        viewModel.app.setTitle(getString(R.string.home))
     }
 
     /* function to initialize all listener in this layout */
@@ -67,7 +67,7 @@ class UserListFragment : Fragment() {
                 if (username.isEmpty()) { // if username empty, send notification error
                     binding.etSearch.error = getString(R.string.field_required)
                 } else { // if username not empty, call the search Github API
-                    viewModel.searchUsers(username)
+                    viewModel.network.searchUsers(username)
                 }
                 return@setOnEditorActionListener true
             }
@@ -78,7 +78,7 @@ class UserListFragment : Fragment() {
     /* function to set up any observer in view model */
     private fun setupObserver() {
         // observe for users data and set with value based on condition
-        viewModel.getUsers().observe(viewLifecycleOwner) {
+        viewModel.network.getUsers().observe(viewLifecycleOwner) {
             when (it.statusType) {
                 Resource.StatusType.LOADING -> {
                     context?.hideKeyboard(requireView())

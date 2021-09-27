@@ -66,7 +66,7 @@ class FollowersFragment private constructor() : Fragment() {
     /* function to set up any observer in view model */
     private fun setupObserver() {
         // observe for followers of user and set with value based on condition
-        viewModel.getFollowers().observe(viewLifecycleOwner) {
+        viewModel.network.getFollowers().observe(viewLifecycleOwner) {
             when (it.statusType) {
                 Resource.StatusType.LOADING -> {
                     showLoading(true)
@@ -101,7 +101,7 @@ class FollowersFragment private constructor() : Fragment() {
 
     /* function to show followers of user */
     private fun showFollowers() {
-        username?.let { viewModel.userFollowers(it) }
+        username?.let { viewModel.network.userFollowers(it) }
     }
 
     /* function to show and not show progress bar for loading content */

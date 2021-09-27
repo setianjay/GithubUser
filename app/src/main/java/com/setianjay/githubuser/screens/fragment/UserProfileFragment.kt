@@ -78,7 +78,7 @@ class UserProfileFragment : Fragment(), View.OnClickListener {
     /* function to check user is exist or not exist in local persistence */
     private fun checkUser() {
         // observe for the result of specific user
-        viewModel.checkUserExists(username).observe(viewLifecycleOwner) { user ->
+        viewModel.db.checkUserExists(username).observe(viewLifecycleOwner) { user ->
             // if user is not null (user is exist in local persistence)
             if (user != null) {
                 setSrcFab(R.drawable.ic_heart_red)
@@ -89,18 +89,18 @@ class UserProfileFragment : Fragment(), View.OnClickListener {
 
     /* function to set of title for current fragment and send the value to HomeActivity */
     private fun setTitle() {
-        viewModel.setTitle(getString(R.string.profile))
+        viewModel.app.setTitle(getString(R.string.profile))
     }
 
     /* function to show details of user */
     private fun showDetails() {
-       viewModel.userDetails(username)
+       viewModel.network.userDetails(username)
     }
 
     /* function to set up any observer in view model */
     private fun setupObserver() {
         // observe for details of user and set with value based on condition
-        viewModel.getUserDetails().observe(viewLifecycleOwner) {
+        viewModel.network.getUserDetails().observe(viewLifecycleOwner) {
             when (it.statusType) {
                 Resource.StatusType.LOADING -> {
                     showLoading(true)
@@ -175,12 +175,12 @@ class UserProfileFragment : Fragment(), View.OnClickListener {
         if (v?.id == R.id.fab_profile) {
             val user = User(username, userImg, type)
             if (isUserExists) { // if isUserExists is true (user is exists in local persistence)
-                viewModel.deleteUserFavorite(user)
+                viewModel.db.deleteUserFavorite(user)
                 setSrcFab(R.drawable.ic_heart)
                 isUserExists = false
                 AppUtil.showToast(requireContext(), getString(R.string.favorites_remove, username))
             } else { // if isUserExists is false (user don't have exists in local persistence)
-                viewModel.addUserFavorite(user)
+                viewModel.db.addUserFavorite(user)
                 setSrcFab(R.drawable.ic_heart_red)
                 isUserExists = true
                 AppUtil.showToast(requireContext(), getString(R.string.favorites_add, username))

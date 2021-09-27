@@ -42,7 +42,7 @@ class SettingsFragment : Fragment() {
 
     /* function to set of title for current fragment and send the value to HomeActivity */
     private fun setTitle() {
-        viewModel.setTitle(getString(R.string.settings))
+        viewModel.app.setTitle(getString(R.string.settings))
     }
 
     /* function to initialize all listener in this layout */
@@ -56,14 +56,14 @@ class SettingsFragment : Fragment() {
 
         // listener for change theme
         binding.swTheme.setOnCheckedChangeListener { _, checked ->
-            viewModel.setTheme(checked)
+            viewModel.app.setTheme(checked)
         }
     }
 
     /* function to set up any observer in view model */
     private fun setupObserver(){
         // observe theme of the application, is it dark mode or light mode
-        viewModel.getTheme().observe(viewLifecycleOwner){ isDarkModeActive ->
+        viewModel.app.getTheme().observe(viewLifecycleOwner){ isDarkModeActive ->
             if (isDarkModeActive) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 binding.swTheme.isChecked = true

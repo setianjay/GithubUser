@@ -10,7 +10,6 @@ import com.setianjay.githubuser.database.presistence.DatabaseBuilder
 import com.setianjay.githubuser.databinding.ActivitySplashScreenBinding
 import com.setianjay.githubuser.network.api.ApiService
 import com.setianjay.githubuser.screens.common.animations.Animations
-import com.setianjay.githubuser.utill.AppUtil
 import com.setianjay.githubuser.utill.dataStore
 import com.setianjay.githubuser.viewmodel.GithubViewModel
 import com.setianjay.githubuser.viewmodel.GithubViewModelFactory
@@ -21,7 +20,7 @@ class SplashScreenActivity : AppCompatActivity() {
             layoutInflater
         )
     }
-    private val animations: Animations by lazy { Animations(this) }
+    private val anim: Animations by lazy { Animations(this) }
 
     private val viewModelFactory by lazy {
         GithubViewModelFactory(
@@ -46,16 +45,16 @@ class SplashScreenActivity : AppCompatActivity() {
     private fun initAnimations() {
         binding.apply {
             // animation for image github
-            ivGithub.startAnimation(animations.topToBottom())
+            ivGithub.startAnimation(anim.topToBottom())
 
             // animation for title
-            tvTitle.startAnimation(animations.scaleToBig())
+            tvTitle.startAnimation(anim.scaleToBig())
 
             // animation for subtitle
-            tvSubtitle.startAnimation(animations.scaleToBig())
+            tvSubtitle.startAnimation(anim.scaleToBig())
 
             // animation for button leave
-            btnMove.startAnimation(animations.bottomToTop())
+            btnMove.startAnimation(anim.bottomToTop())
         }
     }
 
@@ -72,7 +71,7 @@ class SplashScreenActivity : AppCompatActivity() {
     /* function to set up any observer in view model */
     private fun setupObserver() {
         // observe theme of the application, is it dark mode or light mode
-        viewModel.getTheme().observe(this@SplashScreenActivity) { isDarkModeActive ->
+        viewModel.app.getTheme().observe(this@SplashScreenActivity) { isDarkModeActive ->
             if (isDarkModeActive) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {

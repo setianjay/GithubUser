@@ -20,7 +20,7 @@ class GithubRepository(
 
     suspend fun searchUsers(username: String) = githubApi.searchUsers(username)
 
-    /************************** DATABASE **************************/
+    /************************** PERSISTENCE **************************/
     suspend fun addUserFavorite(user: User) = db.userDao().addFavorite(user)
 
     suspend fun deleteUserFavorite(user: User) = db.userDao().deleteFavorite(user)

@@ -3,12 +3,9 @@ package com.setianjay.githubuser.screens.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.setianjay.githubuser.databinding.ItemUserListBinding
-import com.setianjay.githubuser.model.user.UserModel
 import com.setianjay.githubuser.model.user.UsersModel
 import com.setianjay.githubuser.utill.load
-import timber.log.Timber
 
 class UserListAdapter(private val listener: OnUserListAdapterListener) :
     RecyclerView.Adapter<UserListAdapter.ViewHolder>() {

@@ -52,7 +52,7 @@ class FavoriteFragment : Fragment() {
 
     /* function to set of title for current fragment and send the value to HomeActivity */
     private fun setTitle() {
-        viewModel.setTitle(getString(R.string.favorite_user))
+        viewModel.app.setTitle(getString(R.string.favorite_user))
     }
 
     /* function to check and display whether the user's favorite exists */
@@ -60,7 +60,7 @@ class FavoriteFragment : Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
             showLoading(true)
             delay(1000L)
-            viewModel.getUserFavorite().observe(viewLifecycleOwner) { usersFavorite ->
+            viewModel.db.getUserFavorite().observe(viewLifecycleOwner) { usersFavorite ->
                 Timber.e("user favorite : $usersFavorite")
                 if (usersFavorite.isNotEmpty()) {
                     showLoading(false)
@@ -94,7 +94,7 @@ class FavoriteFragment : Fragment() {
                     dialogsNavigator.dialogWarning(user.username,
                         object : DialogsNavigators.IOnDialogsNavigator {
                             override fun positiveButton(dialog: Dialog) {
-                                viewModel.deleteUserFavorite(user)
+                                viewModel.db.deleteUserFavorite(user)
                                 dialog.dismiss()
                             }
 

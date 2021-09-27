@@ -1,8 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.GithubUser" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.GithubUser" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorPrimary">@color/black</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
@@ -10,7 +10,70 @@
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/black</item>
         <!-- Customize your theme here. -->
+    </style>
+
+    <!-- Animation -->
+    <style name="dialogAnimations">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+    <!-- Container Content -->
+    <style name="colorContainerProfile">
+        <item name="contentScrim">@color/black</item>
+    </style>
+
+    <!-- Button -->
+    <style name="colorButtonSplashScreen">
+        <item name="backgroundTint">@color/white</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <!-- Divider -->
+    <style name="colorDivider">
+        <item name="background">@color/red</item>
+    </style>
+
+    <!-- Image -->
+    <style name="colorImageLogo">
+        <item name="tint">@color/white</item>
+    </style>
+
+    <style name="colorImageMenus">
+        <item name="tint">@color/white</item>
+    </style>
+
+    <style name="colorImageUser">
+        <item name="tint">@color/white</item>
+    </style>
+
+    <!-- Tab Layout -->
+    <style name="tab" parent="Widget.Design.TabLayout">
+        <item name="tabTextAppearance">@style/tabLayoutStyle</item>
+        <item name="tabIndicatorColor">@color/red</item>
+        <item name="tabSelectedTextColor">@color/white</item>
+    </style>
+
+    <style name="tabLayoutStyle" parent="TextAppearance.Design.Tab">
+        <item name="fontFamily">@font/roboto_bold</item>
+        <item name="tabBackground">@color/black</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/gray</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <!-- Text -->
+    <style name="colorTextTitle">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!-- Text Edit -->
+    <style name="colorTextSearch">
+        <item name="android:background">@null</item>
+        <item name="android:textColorHint">@color/gray</item>
+        <item name="android:textColor">@color/black_soft</item>
     </style>
 </resources>

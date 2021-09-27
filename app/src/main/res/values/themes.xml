@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.GithubUser" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -16,6 +16,41 @@
         <item name="android:windowAnimationStyle">@style/dialogAnimations</item>
     </style>
 
+    <!-- Animation -->
+    <style name="dialogAnimations">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+    <!-- Container Content -->
+    <style name="colorContainerProfile">
+        <item name="contentScrim">@color/white</item>
+    </style>
+
+    <!-- Button -->
+    <style name="colorButtonSplashScreen">
+        <item name="backgroundTint">@color/black</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!-- Divider -->
+    <style name="colorDivider">
+        <item name="background">@color/gray</item>
+    </style>
+
+    <!-- Image -->
+    <style name="colorImageLogo">
+        <item name="tint">@color/black</item>
+    </style>
+
+    <style name="colorImageMenus">
+        <item name="tint">@color/black</item>
+    </style>
+
+    <style name="colorImageUser">
+        <item name="tint">@color/black</item>
+    </style>
+
     <!-- Tab Layout -->
     <style name="tab" parent="Widget.Design.TabLayout">
         <item name="tabTextAppearance">@style/tabLayoutStyle</item>
@@ -25,15 +60,22 @@
 
     <style name="tabLayoutStyle" parent="TextAppearance.Design.Tab">
         <item name="fontFamily">@font/roboto_bold</item>
+        <item name="tabBackground">@color/white</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/gray</item>
         <item name="textAllCaps">false</item>
         <item name="android:textAllCaps">false</item>
     </style>
 
-    <!-- Dialogs Animation -->
-    <style name="dialogAnimations">
-        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
-        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    <!-- Text -->
+    <style name="colorTextTitle">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <!-- Text Edit -->
+    <style name="colorTextSearch">
+        <item name="android:background">@null</item>
+        <item name="android:textColorHint">@color/gray</item>
+        <item name="android:textColor">@color/black_soft</item>
     </style>
 </resources>

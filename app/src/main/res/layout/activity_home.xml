@@ -17,11 +17,11 @@
 
         <TextView
             android:id="@+id/tv_page"
+            style="@style/colorTextTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/merienda_regular"
             android:textSize="@dimen/text_24"
-            android:textColor="@color/black"
             android:textStyle="bold"
             android:text="@string/home"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,6 +30,7 @@
 
         <ImageView
             android:id="@+id/iv_menus"
+            style="@style/colorImageMenus"
             android:background="?android:attr/selectableItemBackground"
             android:contentDescription="@string/app_name"
             android:layout_width="@dimen/width_24"

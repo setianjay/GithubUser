@@ -22,13 +22,12 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/height_250"
-            android:background="@color/white">
+            android:layout_height="@dimen/height_250">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
+                style="@style/colorContainerProfile"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_200"
-                app:contentScrim="@color/white"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -63,23 +62,23 @@
 
                             <TextView
                                 android:id="@+id/tv_repository"
+                                style="@style/colorTextTitle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:fontFamily="@font/roboto_bold"
-                                android:textColor="@color/black"
                                 android:textSize="@dimen/text_18"
                                 android:textStyle="bold"
                                 tools:text="@string/number" />
 
                             <TextView
                                 android:id="@+id/tv_label_repository"
+                                style="@style/colorTextTitle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:fontFamily="@font/montserrat_regular"
                                 android:text="@string/repository"
-                                android:textColor="@color/black"
                                 android:textSize="@dimen/text_14"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -94,23 +93,23 @@
 
                             <TextView
                                 android:id="@+id/tv_followers"
+                                style="@style/colorTextTitle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:fontFamily="@font/roboto_bold"
-                                android:textColor="@color/black"
                                 android:textSize="@dimen/text_18"
                                 android:textStyle="bold"
                                 tools:text="@string/number" />
 
                             <TextView
                                 android:id="@+id/tv_label_followers"
+                                style="@style/colorTextTitle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:fontFamily="@font/montserrat_regular"
                                 android:text="@string/followers"
-                                android:textColor="@color/black"
                                 android:textSize="@dimen/text_14"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -125,23 +124,23 @@
 
                             <TextView
                                 android:id="@+id/tv_following"
+                                style="@style/colorTextTitle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:fontFamily="@font/roboto_bold"
-                                android:textColor="@color/black"
                                 android:textSize="@dimen/text_18"
                                 android:textStyle="bold"
                                 tools:text="@string/number" />
 
                             <TextView
                                 android:id="@+id/tv_label_following"
+                                style="@style/colorTextTitle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:fontFamily="@font/montserrat_regular"
                                 android:text="@string/following"
-                                android:textColor="@color/black"
                                 android:textSize="@dimen/text_14"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -149,11 +148,11 @@
 
                     <TextView
                         android:id="@+id/tv_name"
+                        style="@style/colorTextTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_8"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textColor="@color/black"
                         android:textSize="@dimen/text_14"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/iv_profile"
@@ -161,11 +160,11 @@
 
                     <TextView
                         android:id="@+id/tv_username"
+                        style="@style/colorTextTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_3"
                         android:fontFamily="@font/montserrat_regular"
-                        android:textColor="@color/black"
                         android:textSize="@dimen/text_14"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_name"
@@ -173,11 +172,11 @@
 
                     <TextView
                         android:id="@+id/tv_company"
+                        style="@style/colorTextTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_3"
                         android:fontFamily="@font/montserrat_regular"
-                        android:textColor="@color/black"
                         android:textSize="@dimen/text_14"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_username"
@@ -185,11 +184,11 @@
 
                     <TextView
                         android:id="@+id/tv_location"
+                        style="@style/colorTextTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_3"
                         android:fontFamily="@font/montserrat_regular"
-                        android:textColor="@color/black"
                         android:textSize="@dimen/text_14"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_company"
@@ -198,11 +197,6 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/gray_soft" />
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tb_layout"
@@ -213,7 +207,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/gray_soft"/>
+                style="@style/colorDivider" />
 
         </com.google.android.material.appbar.AppBarLayout>
 

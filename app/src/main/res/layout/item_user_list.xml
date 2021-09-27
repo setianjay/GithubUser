@@ -17,19 +17,20 @@
 
     <TextView
         android:id="@+id/tv_user"
+        style="@style/colorTextTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_33"
         android:layout_marginTop="@dimen/margin_3"
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/name"
-        android:textColor="@color/black"
         android:textSize="@dimen/text_15"
         app:layout_constraintStart_toEndOf="@id/iv_user"
         app:layout_constraintTop_toTopOf="@id/iv_user" />
 
     <ImageView
         android:id="@+id/iv_location"
+        style="@style/colorImageUser"
         android:layout_width="@dimen/height_24"
         android:layout_height="@dimen/height_24"
         android:layout_marginStart="@dimen/margin_33"
@@ -41,11 +42,12 @@
 
     <TextView
         android:id="@+id/tv_location"
+        style="@style/colorTextTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_regular"
         android:text="@string/location"
-        android:textColor="@color/black"
+        android:textSize="@dimen/text_13"
         app:layout_constraintStart_toEndOf="@id/iv_location"
         app:layout_constraintTop_toTopOf="@id/iv_location"
         app:layout_constraintBottom_toBottomOf="@id/iv_location"/>
@@ -54,7 +56,7 @@
         android:layout_width="0dp"
         android:layout_height="@dimen/height_1"
         android:layout_marginTop="@dimen/margin_20"
-        android:background="@color/gray"
+        android:background="@color/gray_soft"
         app:layout_constraintStart_toStartOf="@id/iv_location"
         app:layout_constraintTop_toBottomOf="@id/iv_location"
         app:layout_constraintEnd_toEndOf="parent"/>

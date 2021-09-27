@@ -4,14 +4,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.PopupMenu
-import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.setianjay.githubuser.R
+import com.setianjay.githubuser.database.preference.SettingsPreference
 import com.setianjay.githubuser.database.presistence.DatabaseBuilder
 import com.setianjay.githubuser.databinding.ActivityHomeBinding
 import com.setianjay.githubuser.network.api.ApiService
+import com.setianjay.githubuser.utill.dataStore
 import com.setianjay.githubuser.viewmodel.GithubViewModel
 import com.setianjay.githubuser.viewmodel.GithubViewModelFactory
 
@@ -21,7 +21,8 @@ class HomeActivity : AppCompatActivity() {
     private val viewModelFactory by lazy {
         GithubViewModelFactory(
             ApiService.githubApi,
-            DatabaseBuilder.getInstance(this.applicationContext)
+            DatabaseBuilder.getInstance(this.applicationContext),
+            SettingsPreference.getInstance(applicationContext.dataStore)
         )
     }
 

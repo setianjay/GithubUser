@@ -26,11 +26,11 @@
 
         <EditText
             android:id="@+id/et_search"
+            style="@style/colorTextSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_marginStart="@dimen/margin_10"
-            android:background="@null"
             android:fontFamily="@font/montserrat_regular"
             android:hint="@string/find_someone_here"
             android:imeOptions="actionDone"
@@ -64,6 +64,7 @@
 
     <TextView
         android:id="@+id/tv_title"
+        style="@style/colorTextTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_14"
@@ -71,7 +72,6 @@
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/montserrat_bold"
         tools:text="@string/title_search"
-        android:textColor="@color/black"
         android:textSize="@dimen/text_16"/>
 
     <TextView

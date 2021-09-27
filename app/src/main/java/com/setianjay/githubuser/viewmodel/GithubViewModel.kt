@@ -134,4 +134,12 @@ class GithubViewModel(private val repository: GithubRepository) : ViewModel() {
 
     /***** Get User Favorite *****/
     fun getUserFavorite(): LiveData<List<User>> = repository.getUsers().asLiveData()
+
+    /***** Set Theme *****/
+    fun setTheme(isDarkModeActive: Boolean) = viewModelScope.launch {
+        repository.setTheme(isDarkModeActive)
+    }
+
+    /***** Get Theme *****/
+    fun getTheme(): LiveData<Boolean> = repository.getTheme().asLiveData()
 }

@@ -30,4 +30,12 @@
     <string name="title_not_found">Users not found</string>
     <string name="title_search">Let\'s find someone</string>
     <string name="try_again">Try Again</string>
+    <string name="favorite_user">Users Favorite</string>
+    <string name="dont_have_favorite">You don\'t have a favorite user yet</string>
+    <string name="add_favorite_user_on_profile_page">Add favorite user on profile page</string>
+    <string name="do_you_want_to_remove">Do you want to remove %1$s</string>
+    <string name="from_favorites">from favorites ?</string>
+    <string name="warning">warning</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
 </resources>

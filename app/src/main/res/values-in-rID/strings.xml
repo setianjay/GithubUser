@@ -31,4 +31,12 @@
     <string name="title_not_found">Pengguna tidak ditemukan</string>
     <string name="title_search">Ayo temukan seseorang</string>
     <string name="try_again">Coba Lagi</string>
+    <string name="favorite_user">Favorite User</string>
+    <string name="dont_have_favorite">Kamu belum memiliki favorite user</string>
+    <string name="add_favorite_user_on_profile_page">Tambahkan favorite user di halaman profile</string>
+    <string name="do_you_want_to_remove">Apakah kamu ingin menghapus %1$s</string>
+    <string name="from_favorites">dari favorite ?</string>
+    <string name="warning">peringatan</string>
+    <string name="delete">Hapus</string>
+    <string name="cancel">Batal</string>
 </resources>

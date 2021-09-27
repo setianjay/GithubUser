@@ -6,8 +6,10 @@
     <!-- dimen height -->
     <dimen name="height_1">1dp</dimen>
     <dimen name="height_24">24dp</dimen>
+    <dimen name="height_38">38dp</dimen>
     <dimen name="height_55">55dp</dimen>
     <dimen name="height_56">56dp</dimen>
+    <dimen name="height_89">89dp</dimen>
     <dimen name="height_100">100dp</dimen>
     <dimen name="height_156">156dp</dimen>
     <dimen name="height_200">200dp</dimen>
@@ -15,6 +17,7 @@
 
     <!-- dimen margin -->
     <dimen name="margin_3">3dp</dimen>
+    <dimen name="margin_5">5dp</dimen>
     <dimen name="margin_7">7dp</dimen>
     <dimen name="margin_8">8dp</dimen>
     <dimen name="margin_10">10dp</dimen>
@@ -31,6 +34,7 @@
     <dimen name="margin_32">32dp</dimen>
     <dimen name="margin_33">33dp</dimen>
     <dimen name="margin_40">40dp</dimen>
+    <dimen name="margin_47">47dp</dimen>
     <dimen name="margin_66">66dp</dimen>
     <dimen name="margin_100">100dp</dimen>
 
@@ -66,6 +70,6 @@
     <dimen name="width_100">100dp</dimen>
     <dimen name="width_250">250dp</dimen>
     <dimen name="width_185">185dp</dimen>
-    <dimen name="height_38">38dp</dimen>
+    <dimen name="width_38">38dp</dimen>
     <dimen name="margin_41">41dp</dimen>
 </resources>

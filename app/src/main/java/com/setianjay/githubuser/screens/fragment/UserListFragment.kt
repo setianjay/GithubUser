@@ -107,7 +107,7 @@ class UserListFragment : Fragment() {
         userAdapter = UserListAdapter(object : UserListAdapter.OnUserListAdapterListener {
             override fun onClick(data: UsersModel) {
                 val bundle = Bundle()
-                bundle.putParcelable(UserProfileFragment.EXTRA_PROFILE, data)
+                bundle.putString(UserProfileFragment.EXTRA_PROFILE, data.username)
                 findNavController().navigate(
                     R.id.action_userListFragment_to_userProfileFragment,
                     bundle

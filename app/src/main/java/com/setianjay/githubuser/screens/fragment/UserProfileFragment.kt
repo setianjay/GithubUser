@@ -12,7 +12,6 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.setianjay.githubuser.R
 import com.setianjay.githubuser.database.presistence.entity.User
 import com.setianjay.githubuser.databinding.FragmentUserProfileBinding
-import com.setianjay.githubuser.model.user.UsersModel
 import com.setianjay.githubuser.network.resource.Resource
 import com.setianjay.githubuser.screens.common.dialogs.DialogsNavigators
 import com.setianjay.githubuser.screens.common.tablayout.ProfileTabLayout
@@ -23,13 +22,13 @@ class UserProfileFragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentUserProfileBinding? = null
     private val binding get() = _binding!!
 
-    private var data: UsersModel? = null
     private val dialogsNavigators by lazy { DialogsNavigators(requireContext()) }
 
     private var isUserExists = false
 
     private lateinit var type: String
     private lateinit var username: String
+    private lateinit var userImg: String
 
     private val viewModel by viewModels<GithubViewModel>({
         requireActivity()
@@ -66,23 +65,22 @@ class UserProfileFragment : Fragment(), View.OnClickListener {
     private fun initData() {
         val bundle = arguments
         if (bundle != null) {
-            data = bundle.getParcelable(EXTRA_PROFILE)
-            type = data?.type.toString()
-            username = data?.username.toString()
+            val data = bundle.getString(EXTRA_PROFILE)
+            data?.let { username = it }
         }
     }
 
     /* function to handle listener for each view in this layout */
-    private fun initListener(){
+    private fun initListener() {
         binding.fabProfile.setOnClickListener(this)
     }
 
     /* function to check user is exist or not exist in local persistence */
-    private fun checkUser(){
+    private fun checkUser() {
         // observe for the result of specific user
-        viewModel.checkUserExists(username).observe(viewLifecycleOwner){ user ->
+        viewModel.checkUserExists(username).observe(viewLifecycleOwner) { user ->
             // if user is not null (user is exist in local persistence)
-            if (user != null){
+            if (user != null) {
                 setSrcFab(R.drawable.ic_heart_red)
                 isUserExists = true
             }
@@ -122,6 +120,8 @@ class UserProfileFragment : Fragment(), View.OnClickListener {
                         tvCompany.text = it.data?.company ?: getString(R.string.no_data)
                         tvLocation.text = it.data?.location ?: getString(R.string.no_data)
                     }
+                    type = it.data?.type.toString()
+                    userImg = it.data?.avatar.toString()
                 }
                 Resource.StatusType.ERROR -> {
                     showLoading(false)
@@ -172,14 +172,14 @@ class UserProfileFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        if (v?.id == R.id.fab_profile){
-            val user = User(username, type)
-            if(isUserExists){ // if isUserExists is true (user is exists in local persistence)
+        if (v?.id == R.id.fab_profile) {
+            val user = User(username, userImg, type)
+            if (isUserExists) { // if isUserExists is true (user is exists in local persistence)
                 viewModel.deleteUserFavorite(user)
                 setSrcFab(R.drawable.ic_heart)
                 isUserExists = false
                 AppUtil.showToast(requireContext(), getString(R.string.favorites_remove, username))
-            }else{ // if isUserExists is false (user don't have exists in local persistence)
+            } else { // if isUserExists is false (user don't have exists in local persistence)
                 viewModel.addUserFavorite(user)
                 setSrcFab(R.drawable.ic_heart_red)
                 isUserExists = true

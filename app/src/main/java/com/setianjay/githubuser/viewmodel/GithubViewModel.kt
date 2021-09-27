@@ -125,10 +125,13 @@ class GithubViewModel(private val repository: GithubRepository) : ViewModel() {
     }
 
     /***** Add User Favorite *****/
+    fun checkUserExists(username: String): LiveData<User?> = repository.getSpecificUser(username).asLiveData()
+
+    /***** Delete User Favorite *****/
     fun deleteUserFavorite(user: User) = viewModelScope.launch {
         repository.deleteUserFavorite(user)
     }
 
-    /***** Add User Favorite *****/
-    fun checkUserExists(username: String): LiveData<User?> = repository.getSpecificUser(username).asLiveData()
+    /***** Get User Favorite *****/
+    fun getUserFavorite(): LiveData<List<User>> = repository.getUsers().asLiveData()
 }

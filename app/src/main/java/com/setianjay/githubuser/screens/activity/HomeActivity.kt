@@ -52,8 +52,8 @@ class HomeActivity : AppCompatActivity() {
         popupMenu.setOnMenuItemClickListener { item: MenuItem? ->
             when (item?.itemId) {
                 R.id.favorites -> {
-                    Toast.makeText(this@HomeActivity, "Under Development", Toast.LENGTH_SHORT)
-                        .show()
+                    navController.navigateUp()
+                    navController.navigate(R.id.favoriteFragment)
                 }
                 R.id.settings -> {
                     navController.navigateUp()

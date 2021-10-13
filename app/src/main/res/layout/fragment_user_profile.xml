@@ -40,7 +40,7 @@
                         android:layout_height="@dimen/height_100"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:src="@drawable/im_user_6" />
+                        tools:src="@drawable/ic_users" />
 
                     <LinearLayout
                         android:id="@+id/container_info"

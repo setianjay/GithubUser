@@ -2,6 +2,7 @@ package com.setianjay.githubuser.screens.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.setianjay.githubuser.databinding.ItemUserListBinding
 import com.setianjay.githubuser.model.user.UsersModel
@@ -9,7 +10,7 @@ import com.setianjay.githubuser.utill.load
 
 class UserListAdapter(private val listener: OnUserListAdapterListener) :
     RecyclerView.Adapter<UserListAdapter.ViewHolder>() {
-    private val users: ArrayList<UsersModel> = arrayListOf()
+    private var users = emptyList<UsersModel>()
 
     interface OnUserListAdapterListener {
         fun onClick(data: UsersModel)
@@ -35,18 +36,22 @@ class UserListAdapter(private val listener: OnUserListAdapterListener) :
     class ViewHolder(private val binding: ItemUserListBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun usersBind(user: UsersModel, listener: OnUserListAdapterListener) {
-            user.avatar?.let { binding.ivUser.load(it) }
+            binding.apply {
+                ivUser.load(user.avatar)
+                tvUser.text = user.username
+                tvLocation.text = user.type
 
-            binding.tvUser.text = user.username
-            binding.tvLocation.text = user.type
+                containerUser.setOnClickListener { listener.onClick(user) }
+            }
 
-            binding.containerUser.setOnClickListener { listener.onClick(user) }
+
         }
     }
 
     fun setDataUser(data: List<UsersModel>) {
-        users.clear()
-        users.addAll(data)
-        notifyDataSetChanged()
+        val diffCallback = UserListDiffCallback(this.users, data)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+        this.users = data
+        diffResult.dispatchUpdatesTo(this)
     }
 }

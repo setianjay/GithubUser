@@ -2,10 +2,10 @@ package com.setianjay.githubuser.screens.fragment
 
 import android.app.Dialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
@@ -15,12 +15,15 @@ import com.setianjay.githubuser.databinding.FragmentUserProfileBinding
 import com.setianjay.githubuser.network.resource.Resource
 import com.setianjay.githubuser.screens.common.dialogs.DialogsNavigators
 import com.setianjay.githubuser.screens.common.tablayout.ProfileTabLayout
-import com.setianjay.githubuser.utill.*
+import com.setianjay.githubuser.utill.AppUtil
+import com.setianjay.githubuser.utill.display
+import com.setianjay.githubuser.utill.load
+import com.setianjay.githubuser.utill.src
 import com.setianjay.githubuser.viewmodel.GithubViewModel
 
 class UserProfileFragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentUserProfileBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding
 
     private val dialogsNavigators by lazy { DialogsNavigators(requireContext()) }
 
@@ -34,16 +37,12 @@ class UserProfileFragment : Fragment(), View.OnClickListener {
         requireActivity()
     })
 
-    companion object {
-        const val EXTRA_PROFILE = "extra_profile"
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         _binding = FragmentUserProfileBinding.inflate(inflater, container, false)
-        return binding.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -72,7 +71,7 @@ class UserProfileFragment : Fragment(), View.OnClickListener {
 
     /* function to handle listener for each view in this layout */
     private fun initListener() {
-        binding.fabProfile.setOnClickListener(this)
+        binding?.fabProfile?.setOnClickListener(this)
     }
 
     /* function to check user is exist or not exist in local persistence */
@@ -109,9 +108,9 @@ class UserProfileFragment : Fragment(), View.OnClickListener {
                 Resource.StatusType.SUCCESS -> {
                     showLoading(false)
                     showContentDetail(true)
-                    it.data?.avatar?.let { src -> binding.ivProfile.load(src) }
+                    it.data?.avatar?.let { src -> binding?.ivProfile?.load(src) }
 
-                    binding.apply {
+                    binding?.apply {
                         tvRepository.text = it.data?.totalRepository.toString()
                         tvFollowers.text = it.data?.totalFollowers.toString()
                         tvFollowing.text = it.data?.totalFollowing.toString()
@@ -143,35 +142,50 @@ class UserProfileFragment : Fragment(), View.OnClickListener {
                 }
             }
         }
+
+        // observe for setup tab layout background color based on theme
+        viewModel.app.getTheme().observe(viewLifecycleOwner){ isDarkModeActive ->
+            if (isDarkModeActive){ // if dark mode is active
+                binding?.tbLayout?.setBackgroundResource(R.color.black)
+            }else{ // if light mode is active
+                binding?.tbLayout?.setBackgroundResource(R.color.white)
+            }
+
+        }
     }
 
     /* function to setup tab layout and viewpager */
     private fun setupTabLayout() {
         val tabAdapter = ProfileTabLayout(childFragmentManager, lifecycle, username)
-        binding.vwPager.adapter = tabAdapter
+        binding?.vwPager?.adapter = tabAdapter
 
         val titlesTabLayout = listOf(getString(R.string.followers), getString(R.string.following))
-        TabLayoutMediator(binding.tbLayout, binding.vwPager) { tab, position ->
-            tab.text = titlesTabLayout[position]
-        }.attach()
+        binding?.tbLayout?.let { tabLayout ->
+            binding?.vwPager?.let { viewPager ->
+                TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+                    tab.text = titlesTabLayout[position]
+                }.attach()
+            }
+        }
     }
 
     /* function to show and not show progress bar for loading content */
     private fun showLoading(show: Boolean) {
-        binding.pbLoading.visibility = if (show) View.VISIBLE else View.GONE
+        binding?.pbLoading?.display(show)
     }
 
     /* function to show and not show the detail profile content */
     private fun showContentDetail(show: Boolean) {
-        binding.containerProfile.visibility = if (show) View.VISIBLE else View.GONE
+        binding?.containerProfile?.display(show)
     }
 
     /* function to set image source for floating action button */
     private fun setSrcFab(drawable: Int){
-        binding.fabProfile.src(resources, drawable)
+        binding?.fabProfile?.src(resources, drawable)
     }
 
     override fun onClick(v: View?) {
+        // if floating action button has clicked
         if (v?.id == R.id.fab_profile) {
             val user = User(username, userImg, type)
             if (isUserExists) { // if isUserExists is true (user is exists in local persistence)
@@ -192,4 +206,9 @@ class UserProfileFragment : Fragment(), View.OnClickListener {
         super.onDestroy()
         _binding = null
     }
+
+    companion object {
+        const val EXTRA_PROFILE = "extra_profile"
+    }
+
 }

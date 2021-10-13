@@ -19,7 +19,7 @@ class HomeActivity : AppCompatActivity() {
     private val binding by lazy { ActivityHomeBinding.inflate(layoutInflater) }
 
     private val viewModelFactory by lazy {
-        GithubViewModelFactory(
+        GithubViewModelFactory.getInstance(
             ApiService.githubApi,
             DatabaseBuilder.getInstance(this.applicationContext),
             SettingsPreference.getInstance(applicationContext.dataStore)

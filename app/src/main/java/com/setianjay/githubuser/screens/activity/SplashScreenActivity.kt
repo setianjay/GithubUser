@@ -23,7 +23,7 @@ class SplashScreenActivity : AppCompatActivity() {
     private val anim: Animations by lazy { Animations(this) }
 
     private val viewModelFactory by lazy {
-        GithubViewModelFactory(
+        GithubViewModelFactory.getInstance(
             ApiService.githubApi,
             DatabaseBuilder.getInstance(this.applicationContext),
             SettingsPreference.getInstance(this.applicationContext.dataStore)

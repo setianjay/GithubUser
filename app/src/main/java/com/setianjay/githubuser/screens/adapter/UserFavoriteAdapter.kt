@@ -2,6 +2,7 @@ package com.setianjay.githubuser.screens.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.setianjay.githubuser.database.presistence.entity.User
 import com.setianjay.githubuser.databinding.ItemUserListBinding
@@ -9,7 +10,7 @@ import com.setianjay.githubuser.utill.load
 
 class UserFavoriteAdapter(private val listener: OnUserFavoriteAdapterListener) :
     RecyclerView.Adapter<UserFavoriteAdapter.ViewHolder>() {
-    private val usersFavorite = ArrayList<User>()
+    private var usersFavorite = emptyList<User>()
 
     interface OnUserFavoriteAdapterListener {
         fun onClick(user: User)
@@ -38,24 +39,28 @@ class UserFavoriteAdapter(private val listener: OnUserFavoriteAdapterListener) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(user: User) {
-            binding.ivUser.load(user.avatar)
-            binding.tvUser.text = user.username
-            binding.tvLocation.text = user.type
+            binding.apply {
+                ivUser.load(user.avatar)
+                tvUser.text = user.username
+                tvLocation.text = user.type
 
-            binding.containerUser.setOnClickListener {
-                listener.onClick(user)
+                containerUser.setOnClickListener {
+                    listener.onClick(user)
+                }
+
+                containerUser.setOnLongClickListener {
+                    listener.onLongClick(user)
+                    true
+                }
             }
 
-            binding.containerUser.setOnLongClickListener {
-                listener.onLongClick(user)
-                true
-            }
         }
     }
 
     fun setDataUser(data: List<User>) {
-        usersFavorite.clear()
-        usersFavorite.addAll(data)
-        notifyDataSetChanged()
+        val diffCallback = UserFavoriteDiffCallback(this.usersFavorite, data)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+        this.usersFavorite = data
+        diffResult.dispatchUpdatesTo(this)
     }
 }

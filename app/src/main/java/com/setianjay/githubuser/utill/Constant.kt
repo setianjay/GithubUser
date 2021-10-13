@@ -1,6 +1,5 @@
 package com.setianjay.githubuser.utill
 
-import com.setianjay.githubuser.BuildConfig
 
 object Constant {
     object API {

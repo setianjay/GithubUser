@@ -13,15 +13,6 @@ class GithubCompositionApp private constructor(
 ) {
     private val title: MutableLiveData<String> = MutableLiveData()
 
-    companion object{
-        fun getInstance(
-            repository: GithubRepository,
-            viewModelScope: CoroutineScope
-        ): GithubCompositionApp {
-            return GithubCompositionApp(repository, viewModelScope)
-        }
-    }
-
     /***** Title *****/
     fun setTitle(title: String) {
         this.title.postValue(title)
@@ -35,4 +26,13 @@ class GithubCompositionApp private constructor(
     }
 
     fun getTheme(): LiveData<Boolean> = repository.getTheme().asLiveData()
+
+    companion object{
+        fun getInstance(
+            repository: GithubRepository,
+            viewModelScope: CoroutineScope
+        ): GithubCompositionApp {
+            return GithubCompositionApp(repository, viewModelScope)
+        }
+    }
 }

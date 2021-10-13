@@ -10,8 +10,8 @@
     <string name="dont_have_favorite">Kamu belum memiliki favorite user</string>
     <string name="do_you_want_to_remove">Apakah kamu ingin menghapus %1$s</string>
     <string name="favorites">Favorit</string>
-    <string name="favorites_add">%1$s menambahkan ke favorit</string>
-    <string name="favorites_remove">%1$s dihapus dari favorit</string>
+    <string name="favorites_add">Menambahkan %1$s ke favorit</string>
+    <string name="favorites_remove">Menghapus %1$s dari favorit</string>
     <string name="field_required">Field tidak boleh kosong</string>
     <string name="failed_to_connect_server">Gagal terhubung ke server</string>
     <string name="favorite_user">Favorite User</string>
@@ -20,7 +20,6 @@
     <string name="followers">Pengikut</string>
     <string name="following">Mengikuti</string>
     <string name="from_favorites">dari favorite ?</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home">Beranda</string>
     <string name="let_s_find_out">Ayo Cari Tahu</string>
     <string name="location">New Delhi, India</string>

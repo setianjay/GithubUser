@@ -2,11 +2,11 @@ package com.setianjay.githubuser.screens.fragment
 
 import android.app.Dialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,12 +17,13 @@ import com.setianjay.githubuser.network.resource.Resource
 import com.setianjay.githubuser.screens.adapter.UserListAdapter
 import com.setianjay.githubuser.screens.common.dialogs.DialogsNavigators
 import com.setianjay.githubuser.utill.Constant
+import com.setianjay.githubuser.utill.display
 import com.setianjay.githubuser.utill.hideKeyboard
 import com.setianjay.githubuser.viewmodel.GithubViewModel
 
 class UserListFragment : Fragment() {
     private var _binding: FragmentUserListBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding
 
     private val dialogsNavigators by lazy { DialogsNavigators(requireContext()) }
 
@@ -35,9 +36,9 @@ class UserListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         _binding = FragmentUserListBinding.inflate(inflater, container, false)
-        return binding.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -61,11 +62,11 @@ class UserListFragment : Fragment() {
     /* function to initialize all listener in this layout */
     private fun initListener() {
         // listener for searching with edit text
-        binding.etSearch.setOnEditorActionListener { _, actionId, _ ->
+        binding?.etSearch?.setOnEditorActionListener { _, actionId, _ ->
+            val username = binding?.etSearch?.text.toString().trim()
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                val username = binding.etSearch.text.toString().trim()
                 if (username.isEmpty()) { // if username empty, send notification error
-                    binding.etSearch.error = getString(R.string.field_required)
+                    binding?.etSearch?.error = getString(R.string.field_required)
                 } else { // if username not empty, call the search Github API
                     viewModel.network.searchUsers(username)
                 }
@@ -116,7 +117,7 @@ class UserListFragment : Fragment() {
 
         })
 
-        binding.rvUserList.apply {
+        binding?.rvUserList?.apply {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = userAdapter
@@ -132,43 +133,43 @@ class UserListFragment : Fragment() {
         when (typeInfo) {
             Constant.INFO.IMG_SEARCH_INFORMATION -> {
                 if (show) {
-                    binding.apply {
-                        ivInformation.visibility = View.VISIBLE
+                    binding?.apply {
+                        ivInformation.display(show)
                         ivInformation.setImageResource(R.drawable.ic_search_information)
 
-                        tvTitle.visibility = View.VISIBLE
+                        tvTitle.display(show)
                         tvTitle.text = getString(R.string.title_search)
 
 
-                        tvMessage.visibility = View.VISIBLE
+                        tvMessage.display(show)
                         tvMessage.text = getString(R.string.message_search)
                     }
                 } else {
-                    binding.apply {
-                        ivInformation.visibility = View.GONE
-                        tvTitle.visibility = View.GONE
-                        tvMessage.visibility = View.GONE
+                    binding?.apply {
+                        ivInformation.display(show)
+                        tvTitle.display(show)
+                        tvMessage.display(show)
                     }
                 }
             }
             Constant.INFO.IMG_NOT_FOUND_INFORMATION -> {
                 if (show) {
-                    binding.apply {
-                        ivInformation.visibility = View.VISIBLE
+                    binding?.apply {
+                        ivInformation.display(show)
                         ivInformation.setImageResource(R.drawable.ic_oops)
 
-                        tvTitle.visibility = View.VISIBLE
+                        tvTitle.display(show)
                         tvTitle.text = getString(R.string.title_not_found)
 
 
-                        tvMessage.visibility = View.VISIBLE
+                        tvMessage.display(show)
                         tvMessage.text = getString(R.string.message_not_found)
                     }
                 } else {
-                    binding.apply {
-                        ivInformation.visibility = View.GONE
-                        tvTitle.visibility = View.GONE
-                        tvMessage.visibility = View.GONE
+                    binding?.apply {
+                        ivInformation.display(show)
+                        tvTitle.display(show)
+                        tvMessage.display(show)
                     }
                 }
             }
@@ -177,12 +178,12 @@ class UserListFragment : Fragment() {
 
     /* function to show and not show progress bar for loading content */
     private fun showLoading(show: Boolean) {
-        binding.pbLoading.visibility = if (show) View.VISIBLE else View.GONE
+        binding?.pbLoading?.display(show)
     }
 
     /* function to show and not show recycle view */
     private fun showRecycleView(show: Boolean) {
-        binding.rvUserList.visibility = if (show) View.VISIBLE else View.GONE
+        binding?.rvUserList?.display(show)
     }
 
     /* function to get error code */
@@ -190,7 +191,7 @@ class UserListFragment : Fragment() {
         when (errorCode) {
             Constant.ERROR.ERR_API -> {
                 // show dialog server error
-                dialogsNavigators.dialogServerError(object: DialogsNavigators.IOnDialogsNavigator{
+                dialogsNavigators.dialogServerError(object : DialogsNavigators.IOnDialogsNavigator {
 
                     override fun positiveButton(dialog: Dialog) {
                         showImgInformation(true)

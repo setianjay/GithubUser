@@ -22,6 +22,10 @@ fun Context.hideKeyboard(view: View) {
     imm.hideSoftInputFromWindow(view.windowToken, 0)
 }
 
+fun View.display(isDisplay: Boolean){
+    this.visibility = if (isDisplay) View.VISIBLE else View.GONE
+}
+
 /* extension function for load image from url */
 fun ImageView.load(url: String){
     Glide.with(this.context)

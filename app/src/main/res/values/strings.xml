@@ -12,14 +12,13 @@
     <string name="following">Following</string>
     <string name="failed_to_connect_server">Failed to connect to the server</string>
     <string name="favorites">Favorites</string>
-    <string name="favorites_add">%1$s add to favorite</string>
-    <string name="favorites_remove">%1$s remove from favorite</string>
+    <string name="favorites_add">Add %1$s to favorite</string>
+    <string name="favorites_remove">Remove %1$s from favorite</string>
     <string name="favorite_user">Users Favorite</string>
     <string name="field_required">Field cannot be empty</string>
     <string name="find_someone_here">Find someone here</string>
     <string name="find_someone_on_github">Find someone on Github</string>
     <string name="from_favorites">from favorites ?</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home">Home</string>
     <string name="let_s_find_out">Let\'s Find Out</string>
     <string name="location">New Delhi, India</string>

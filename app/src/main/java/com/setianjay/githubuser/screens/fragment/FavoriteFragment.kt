@@ -2,10 +2,10 @@ package com.setianjay.githubuser.screens.fragment
 
 import android.app.Dialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,16 +14,16 @@ import com.setianjay.githubuser.database.presistence.entity.User
 import com.setianjay.githubuser.databinding.FragmentFavoriteBinding
 import com.setianjay.githubuser.screens.adapter.UserFavoriteAdapter
 import com.setianjay.githubuser.screens.common.dialogs.DialogsNavigators
+import com.setianjay.githubuser.utill.display
 import com.setianjay.githubuser.viewmodel.GithubViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 class FavoriteFragment : Fragment() {
     private var _binding: FragmentFavoriteBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding
 
     private val dialogsNavigator by lazy { DialogsNavigators(requireContext()) }
 
@@ -34,9 +34,9 @@ class FavoriteFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
-        return binding.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -61,13 +61,12 @@ class FavoriteFragment : Fragment() {
             showLoading(true)
             delay(1000L)
             viewModel.db.getUserFavorite().observe(viewLifecycleOwner) { usersFavorite ->
-                Timber.e("user favorite : $usersFavorite")
-                if (usersFavorite.isNotEmpty()) {
+                if (usersFavorite.isNotEmpty()) { // if user favorite exists
                     showLoading(false)
                     showImgInformation(false)
                     showRecycleView(true)
                     userFavoriteAdapter.setDataUser(usersFavorite)
-                } else {
+                } else { // if user favorite doesn't exists
                     showLoading(false)
                     showImgInformation(true)
                     showRecycleView(false)
@@ -105,7 +104,7 @@ class FavoriteFragment : Fragment() {
                 }
             })
 
-        binding.rvFavorite.apply {
+        binding?.rvFavorite?.apply {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = userFavoriteAdapter
@@ -115,29 +114,29 @@ class FavoriteFragment : Fragment() {
 
     /* function for show and not show progress bar for loading content */
     private fun showLoading(show: Boolean) {
-        binding.pbLoading.visibility = if (show) View.VISIBLE else View.GONE
+        binding?.pbLoading?.display(show)
     }
 
     /* function for show and not show image information */
     private fun showImgInformation(show: Boolean) {
         if (show) {
-            binding.apply {
-                ivInformation.visibility = View.VISIBLE
-                tvTitle.visibility = View.VISIBLE
-                tvMessage.visibility = View.VISIBLE
+            binding?.apply {
+                ivInformation.display(show)
+                tvTitle.display(show)
+                tvMessage.display(show)
             }
         } else {
-            binding.apply {
-                ivInformation.visibility = View.GONE
-                tvTitle.visibility = View.GONE
-                tvMessage.visibility = View.GONE
+            binding?.apply {
+                ivInformation.display(show)
+                tvTitle.display(show)
+                tvMessage.display(show)
             }
         }
     }
 
     /* function for show and not show recycle view */
     private fun showRecycleView(show: Boolean){
-        binding.rvFavorite.visibility = if (show) View.VISIBLE else View.GONE
+        binding?.rvFavorite?.display(show)
     }
 
     override fun onDestroy() {

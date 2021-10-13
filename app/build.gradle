@@ -15,7 +15,7 @@ android {
         targetSdkVersion 31
         versionCode 1
         versionName "1.0"
-        buildConfigField("String", "GITHUB_TOKEN", '"token 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"')
+        buildConfigField("String", "GITHUB_TOKEN", '"token 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"')
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -46,7 +46,6 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.6.0'
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

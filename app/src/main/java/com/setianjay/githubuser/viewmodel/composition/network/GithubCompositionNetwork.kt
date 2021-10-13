@@ -21,15 +21,6 @@ class GithubCompositionNetwork private constructor(
     private val userFollowers: MutableLiveData<Resource<List<UsersModel>>> = MutableLiveData()
     private val userFollowing: MutableLiveData<Resource<List<UsersModel>>> = MutableLiveData()
 
-    companion object {
-        fun getInstance(
-            repository: GithubRepository,
-            viewModelScope: CoroutineScope
-        ): GithubCompositionNetwork {
-            return GithubCompositionNetwork(repository, viewModelScope)
-        }
-    }
-
     /***** Search *****/
     fun searchUsers(username: String) = viewModelScope.launch {
         users.value = Resource.loading()
@@ -123,4 +114,13 @@ class GithubCompositionNetwork private constructor(
     }
 
     fun getFollowing(): LiveData<Resource<List<UsersModel>>> = userFollowing
+
+    companion object {
+        fun getInstance(
+            repository: GithubRepository,
+            viewModelScope: CoroutineScope
+        ): GithubCompositionNetwork {
+            return GithubCompositionNetwork(repository, viewModelScope)
+        }
+    }
 }

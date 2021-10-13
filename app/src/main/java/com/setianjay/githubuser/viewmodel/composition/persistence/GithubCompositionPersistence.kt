@@ -11,14 +11,6 @@ class GithubCompositionPersistence private constructor(
     private val repository: GithubRepository,
     private val viewModelScope: CoroutineScope
 ) {
-    companion object {
-        fun getInstance(
-            repository: GithubRepository,
-            viewModelScope: CoroutineScope
-        ): GithubCompositionPersistence {
-            return GithubCompositionPersistence(repository, viewModelScope)
-        }
-    }
 
     /***** Add User Favorite *****/
     fun addUserFavorite(user: User) = viewModelScope.launch {
@@ -36,4 +28,13 @@ class GithubCompositionPersistence private constructor(
 
     /***** Get User Favorite *****/
     fun getUserFavorite(): LiveData<List<User>> = repository.getUsers().asLiveData()
+
+    companion object {
+        fun getInstance(
+            repository: GithubRepository,
+            viewModelScope: CoroutineScope
+        ): GithubCompositionPersistence {
+            return GithubCompositionPersistence(repository, viewModelScope)
+        }
+    }
 }

@@ -1,22 +1,23 @@
 package com.setianjay.githubuser.screens.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.setianjay.githubuser.databinding.FragmentFollowersBinding
-import com.setianjay.githubuser.model.user.*
+import com.setianjay.githubuser.model.user.UsersModel
 import com.setianjay.githubuser.network.resource.Resource
 import com.setianjay.githubuser.screens.adapter.UserListAdapter
 import com.setianjay.githubuser.utill.Constant
+import com.setianjay.githubuser.utill.display
 import com.setianjay.githubuser.viewmodel.GithubViewModel
 
 class FollowersFragment private constructor() : Fragment() {
     private var _binding: FragmentFollowersBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding
 
     private lateinit var userAdapter: UserListAdapter
     private var username: String? = null
@@ -25,25 +26,12 @@ class FollowersFragment private constructor() : Fragment() {
         requireActivity()
     })
 
-    companion object {
-        private const val ARG_USERNAME = "username"
-
-        /* function to initialize this class */
-        fun newInstance(username: String): Fragment {
-            val fragment = FollowersFragment()
-            val bundle = Bundle()
-            bundle.putString(ARG_USERNAME, username)
-            fragment.arguments = bundle
-            return fragment
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         _binding = FragmentFollowersBinding.inflate(inflater, container, false)
-        return binding.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -91,7 +79,7 @@ class FollowersFragment private constructor() : Fragment() {
             }
         })
 
-        binding.rvFollowers.apply {
+        binding?.rvFollowers?.apply {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = userAdapter
@@ -106,23 +94,23 @@ class FollowersFragment private constructor() : Fragment() {
 
     /* function to show and not show progress bar for loading content */
     private fun showLoading(show: Boolean) {
-        binding.pbLoading.visibility = if (show) View.VISIBLE else View.GONE
+        binding?.pbLoading?.display(show)
     }
 
     /* function to show and not show button refresh */
     private fun showBtnRefresh(show: Boolean) {
-        binding.btnRefresh.visibility = if (show) View.VISIBLE else View.GONE
+        binding?.btnRefresh?.display(show)
     }
 
     /* function to get error code */
     private fun getError(errorCode: Int) {
         when (errorCode) {
             Constant.ERROR.ERR_USERS_NOT_FOUND -> {
-                binding.tvNoFollowers.visibility = View.VISIBLE
+                binding?.tvNoFollowers?.visibility = View.VISIBLE
             }
             Constant.ERROR.ERR_API -> {
                 showBtnRefresh(true)
-                binding.btnRefresh.setOnClickListener {
+                binding?.btnRefresh?.setOnClickListener {
                     showFollowers()
                     showBtnRefresh(false)
                 }
@@ -133,5 +121,18 @@ class FollowersFragment private constructor() : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    companion object {
+        private const val ARG_USERNAME = "username"
+
+        /* function to initialize this class */
+        fun newInstance(username: String): Fragment {
+            val fragment = FollowersFragment()
+            val bundle = Bundle()
+            bundle.putString(ARG_USERNAME, username)
+            fragment.arguments = bundle
+            return fragment
+        }
     }
 }

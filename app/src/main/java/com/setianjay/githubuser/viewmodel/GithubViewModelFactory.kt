@@ -8,7 +8,7 @@ import com.setianjay.githubuser.network.api.GithubEndPoint
 import com.setianjay.githubuser.network.repository.GithubRepository
 import java.lang.IllegalArgumentException
 
-class GithubViewModelFactory private constructor(
+class GithubViewModelFactory(
     private val api: GithubEndPoint,
     private val db: AppDatabase,
     private val pref: SettingsPreference
@@ -18,22 +18,5 @@ class GithubViewModelFactory private constructor(
             return GithubViewModel(GithubRepository(api, db, pref)) as T
         }
         throw IllegalArgumentException("Unknown class name")
-    }
-
-    companion object {
-        @Volatile
-        private var INSTANCE: GithubViewModelFactory? = null
-
-        fun getInstance(
-            api: GithubEndPoint,
-            db: AppDatabase,
-            pref: SettingsPreference
-        ): GithubViewModelFactory {
-            return INSTANCE ?: synchronized(this){
-                val instance = GithubViewModelFactory(api, db, pref)
-                INSTANCE = instance
-                instance
-            }
-        }
     }
 }

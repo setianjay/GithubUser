@@ -1,18 +1,14 @@
 package com.setianjay.githubuser.screens.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import com.setianjay.githubuser.database.preference.SettingsPreference
-import com.setianjay.githubuser.database.presistence.DatabaseBuilder
+import com.setianjay.githubuser.app.MyApplication
 import com.setianjay.githubuser.databinding.ActivitySplashScreenBinding
-import com.setianjay.githubuser.network.api.ApiService
 import com.setianjay.githubuser.screens.common.animations.Animations
-import com.setianjay.githubuser.utill.dataStore
 import com.setianjay.githubuser.viewmodel.GithubViewModel
-import com.setianjay.githubuser.viewmodel.GithubViewModelFactory
 
 class SplashScreenActivity : AppCompatActivity() {
     private val binding: ActivitySplashScreenBinding by lazy {
@@ -22,16 +18,8 @@ class SplashScreenActivity : AppCompatActivity() {
     }
     private val anim: Animations by lazy { Animations(this) }
 
-    private val viewModelFactory by lazy {
-        GithubViewModelFactory.getInstance(
-            ApiService.githubApi,
-            DatabaseBuilder.getInstance(this.applicationContext),
-            SettingsPreference.getInstance(this.applicationContext.dataStore)
-        )
-    }
-
     private val viewModel by viewModels<GithubViewModel>{
-        viewModelFactory
+        (application as MyApplication).viewModelFactory
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

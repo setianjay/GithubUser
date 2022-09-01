@@ -1,51 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_toolbar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screens.activity.HomeActivity"
-    android:orientation="vertical">
+    tools:context=".screens.activity.HomeActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/container_toolbar"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tv_page"
+        style="@style/colorTextTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:paddingStart="@dimen/padding_21"
-        android:paddingEnd="@dimen/padding_21">
+        android:layout_marginStart="@dimen/dp21"
+        android:layout_marginTop="@dimen/dp27"
+        android:fontFamily="@font/merienda_regular"
+        android:text="@string/home"
+        android:textSize="@dimen/sp24"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_page"
-            style="@style/colorTextTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/merienda_regular"
-            android:textSize="@dimen/text_24"
-            android:textStyle="bold"
-            android:text="@string/home"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="@dimen/margin_27" />
-
-        <ImageView
-            android:id="@+id/iv_menus"
-            style="@style/colorImageMenus"
-            android:background="?android:attr/selectableItemBackground"
-            android:contentDescription="@string/app_name"
-            android:layout_width="@dimen/width_24"
-            android:layout_height="@dimen/height_24"
-            android:src="@drawable/ic_menu"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="@dimen/margin_32" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/iv_menus"
+        style="@style/colorImageMenus"
+        android:layout_width="@dimen/dp24"
+        android:layout_height="@dimen/dp24"
+        android:layout_marginEnd="@dimen/dp21"
+        android:background="?android:attr/selectableItemBackground"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_menu"
+        app:layout_constraintBottom_toBottomOf="@id/tv_page"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_page" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment_container"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         app:defaultNavHost="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_page"
         app:navGraph="@navigation/nav_content" />
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

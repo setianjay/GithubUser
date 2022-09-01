@@ -13,11 +13,11 @@
         android:focusable="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_10"
-        android:paddingStart="@dimen/padding_21"
-        android:paddingTop="@dimen/padding_10"
-        android:paddingEnd="@dimen/padding_21"
-        android:paddingBottom="@dimen/padding_10"
+        android:layout_marginTop="@dimen/dp10"
+        android:paddingStart="@dimen/dp21"
+        android:paddingTop="@dimen/dp10"
+        android:paddingEnd="@dimen/dp21"
+        android:paddingBottom="@dimen/dp10"
         android:orientation="horizontal">
 
         <ImageView
@@ -33,10 +33,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/margin_41"
+            android:layout_marginStart="@dimen/dp41"
             android:fontFamily="@font/montserrat_regular"
             android:text="@string/change_language"
-            android:textSize="@dimen/text_18"
+            android:textSize="@dimen/sp18"
             android:layout_weight="2" />
 
         <ImageView
@@ -54,7 +54,7 @@
         android:background="@color/gray_soft"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_marginTop="@dimen/margin_8"/>
+        android:layout_marginTop="@dimen/dp8"/>
 
     <LinearLayout
         android:id="@+id/container_theme"
@@ -63,11 +63,11 @@
         android:focusable="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_3"
-        android:paddingStart="@dimen/padding_21"
-        android:paddingTop="@dimen/padding_10"
-        android:paddingEnd="@dimen/padding_21"
-        android:paddingBottom="@dimen/padding_10"
+        android:layout_marginTop="@dimen/dp3"
+        android:paddingStart="@dimen/dp21"
+        android:paddingTop="@dimen/dp10"
+        android:paddingEnd="@dimen/dp21"
+        android:paddingBottom="@dimen/dp10"
         android:orientation="horizontal">
 
         <ImageView
@@ -84,10 +84,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/margin_41"
+            android:layout_marginStart="@dimen/dp41"
             android:fontFamily="@font/montserrat_regular"
             android:text="@string/dark_mode"
-            android:textSize="@dimen/text_18"
+            android:textSize="@dimen/sp18"
             android:layout_weight="2" />
 
         <com.google.android.material.switchmaterial.SwitchMaterial
@@ -102,6 +102,6 @@
         android:background="@color/gray_soft"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_marginTop="@dimen/margin_8"/>
+        android:layout_marginTop="@dimen/dp8"/>
 
 </LinearLayout>

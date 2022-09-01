@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/padding_21"
+    android:padding="@dimen/dp21"
     tools:context=".screens.fragment.UserListFragment">
 
     <LinearLayout
@@ -12,15 +12,15 @@
         android:layout_height="wrap_content"
         android:background="@drawable/sp_search"
         android:orientation="horizontal"
-        android:paddingStart="@dimen/padding_14"
-        android:paddingTop="@dimen/padding_10"
-        android:paddingEnd="@dimen/padding_14"
-        android:paddingBottom="@dimen/padding_10">
+        android:paddingStart="@dimen/dp14"
+        android:paddingTop="@dimen/dp10"
+        android:paddingEnd="@dimen/dp14"
+        android:paddingBottom="@dimen/dp10">
 
         <ImageView
             android:id="@+id/iv_search"
-            android:layout_width="@dimen/width_24"
-            android:layout_height="@dimen/width_24"
+            android:layout_width="@dimen/dp24"
+            android:layout_height="@dimen/dp24"
             android:contentDescription="@string/app_name"
             android:src="@drawable/ic_search" />
 
@@ -30,13 +30,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:layout_marginStart="@dimen/margin_10"
+            android:layout_marginStart="@dimen/dp10"
             android:fontFamily="@font/montserrat_regular"
             android:hint="@string/find_someone_here"
             android:imeOptions="actionDone"
             android:inputType="text"
             android:maxLines="1"
-            android:textSize="@dimen/text_16"
+            android:textSize="@dimen/sp16"
             tools:ignore="Autofill" />
     </LinearLayout>
 
@@ -67,22 +67,22 @@
         style="@style/colorTextTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_14"
+        android:layout_marginTop="@dimen/dp14"
         android:layout_below="@id/iv_information"
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/montserrat_bold"
         tools:text="@string/title_search"
-        android:textSize="@dimen/text_16"/>
+        android:textSize="@dimen/sp16"/>
 
     <TextView
         android:id="@+id/tv_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_7"
+        android:layout_marginTop="@dimen/dp7"
         android:layout_below="@id/tv_title"
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/montserrat_bold"
         tools:text="@string/message_search"
         android:textColor="@color/gray"
-        android:textSize="@dimen/text_13"/>
+        android:textSize="@dimen/sp13"/>
 </RelativeLayout>

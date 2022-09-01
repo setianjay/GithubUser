@@ -9,8 +9,8 @@
     <ImageView
         android:id="@+id/iv_github"
         style="@style/colorImageLogo"
-        android:layout_width="@dimen/height_100"
-        android:layout_height="@dimen/width_100"
+        android:layout_width="@dimen/dp100"
+        android:layout_height="@dimen/dp100"
         android:contentDescription="@string/app_name"
         android:src="@drawable/ic_github"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,12 +25,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_bold"
-        android:textSize="@dimen/text_36"
+        android:textSize="@dimen/sp36"
         android:text="@string/app_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_github"
-        android:layout_marginTop="@dimen/margin_16"/>
+        android:layout_marginTop="@dimen/dp16"/>
 
     <TextView
         android:id="@+id/tv_subtitle"
@@ -38,28 +38,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_regular"
-        android:textSize="@dimen/text_14"
+        android:textSize="@dimen/sp14"
         android:text="@string/find_someone_on_github"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title"
-        android:layout_marginTop="@dimen/margin_8"/>
+        android:layout_marginTop="@dimen/dp8"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_move"
         style="@style/colorButtonSplashScreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cornerRadius="@dimen/radius_15"
+        app:cornerRadius="@dimen/dp15"
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/let_s_find_out"
-        android:textSize="@dimen/text_13"
+        android:textSize="@dimen/sp13"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title"
-        android:layout_marginTop="@dimen/margin_66"
-        android:paddingStart="@dimen/padding_15"
-        android:paddingEnd="@dimen/padding_15"
-        android:paddingTop="@dimen/padding_12"
-        android:paddingBottom="@dimen/padding_12"/>
+        android:layout_marginTop="@dimen/dp66"
+        android:paddingStart="@dimen/dp15"
+        android:paddingEnd="@dimen/dp15"
+        android:paddingTop="@dimen/dp12"
+        android:paddingBottom="@dimen/dp12"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

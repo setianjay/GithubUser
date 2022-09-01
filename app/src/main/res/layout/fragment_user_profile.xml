@@ -18,16 +18,16 @@
         android:id="@+id/container_profile"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/padding_21">
+        android:padding="@dimen/dp21">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/height_250">
+            android:layout_height="@dimen/dp250">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 style="@style/colorContainerProfile"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/height_200"
+                android:layout_height="@dimen/dp200"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,15 +36,15 @@
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/iv_profile"
-                        android:layout_width="@dimen/width_100"
-                        android:layout_height="@dimen/height_100"
+                        android:layout_width="@dimen/dp100"
+                        android:layout_height="@dimen/dp100"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:src="@drawable/ic_users" />
 
                     <LinearLayout
                         android:id="@+id/container_info"
-                        android:layout_width="@dimen/zero"
+                        android:layout_width="@dimen/dp0"
                         android:layout_height="wrap_content"
                         android:baselineAligned="false"
                         android:orientation="horizontal"
@@ -67,7 +67,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:fontFamily="@font/roboto_bold"
-                                android:textSize="@dimen/text_18"
+                                android:textSize="@dimen/sp18"
                                 android:textStyle="bold"
                                 tools:text="@string/number" />
 
@@ -79,7 +79,7 @@
                                 android:layout_gravity="center"
                                 android:fontFamily="@font/montserrat_regular"
                                 android:text="@string/repository"
-                                android:textSize="@dimen/text_14"
+                                android:textSize="@dimen/sp14"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
@@ -87,7 +87,7 @@
                             android:id="@+id/container_followers"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/margin_10"
+                            android:layout_marginStart="@dimen/dp10"
                             android:layout_weight="1"
                             android:orientation="vertical">
 
@@ -98,7 +98,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:fontFamily="@font/roboto_bold"
-                                android:textSize="@dimen/text_18"
+                                android:textSize="@dimen/sp18"
                                 android:textStyle="bold"
                                 tools:text="@string/number" />
 
@@ -110,7 +110,7 @@
                                 android:layout_gravity="center"
                                 android:fontFamily="@font/montserrat_regular"
                                 android:text="@string/followers"
-                                android:textSize="@dimen/text_14"
+                                android:textSize="@dimen/sp14"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
@@ -118,7 +118,7 @@
                             android:id="@+id/container_following"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/margin_10"
+                            android:layout_marginStart="@dimen/dp10"
                             android:layout_weight="1"
                             android:orientation="vertical">
 
@@ -129,7 +129,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:fontFamily="@font/roboto_bold"
-                                android:textSize="@dimen/text_18"
+                                android:textSize="@dimen/sp18"
                                 android:textStyle="bold"
                                 tools:text="@string/number" />
 
@@ -141,7 +141,7 @@
                                 android:layout_gravity="center"
                                 android:fontFamily="@font/montserrat_regular"
                                 android:text="@string/following"
-                                android:textSize="@dimen/text_14"
+                                android:textSize="@dimen/sp14"
                                 android:textStyle="bold" />
                         </LinearLayout>
                     </LinearLayout>
@@ -151,9 +151,9 @@
                         style="@style/colorTextTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_8"
+                        android:layout_marginTop="@dimen/dp8"
                         android:fontFamily="@font/montserrat_bold"
-                        android:textSize="@dimen/text_14"
+                        android:textSize="@dimen/sp14"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/iv_profile"
                         tools:text="@string/name" />
@@ -163,9 +163,9 @@
                         style="@style/colorTextTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_3"
+                        android:layout_marginTop="@dimen/dp3"
                         android:fontFamily="@font/montserrat_regular"
-                        android:textSize="@dimen/text_14"
+                        android:textSize="@dimen/sp14"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_name"
                         tools:text="@string/name" />
@@ -175,9 +175,9 @@
                         style="@style/colorTextTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_3"
+                        android:layout_marginTop="@dimen/dp3"
                         android:fontFamily="@font/montserrat_regular"
-                        android:textSize="@dimen/text_14"
+                        android:textSize="@dimen/sp14"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_username"
                         tools:text="@string/company" />
@@ -187,9 +187,9 @@
                         style="@style/colorTextTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_3"
+                        android:layout_marginTop="@dimen/dp3"
                         android:fontFamily="@font/montserrat_regular"
-                        android:textSize="@dimen/text_14"
+                        android:textSize="@dimen/sp14"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_company"
                         tools:text="@string/location" />
@@ -219,14 +219,14 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_profile"
-            android:layout_width="@dimen/width_56"
-            android:layout_height="@dimen/height_56"
+            android:layout_width="@dimen/dp56"
+            android:layout_height="@dimen/dp56"
             android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/margin_20"
+            android:layout_margin="@dimen/dp20"
             android:backgroundTint="@color/dark_blue"
             android:contentDescription="@string/name"
             android:src="@drawable/ic_heart"
             app:tint="@null"
-            app:borderWidth="@dimen/zero" />
+            app:borderWidth="@dimen/dp0" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

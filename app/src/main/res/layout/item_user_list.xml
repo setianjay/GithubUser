@@ -5,12 +5,12 @@
     android:id="@+id/container_user"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/margin_23">
+    android:layout_marginTop="@dimen/dp23">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_user"
-        android:layout_width="@dimen/width_55"
-        android:layout_height="@dimen/height_55"
+        android:layout_width="@dimen/dp55"
+        android:layout_height="@dimen/dp55"
         android:contentDescription="@string/app_name"
         tools:src="@drawable/ic_users"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,20 +21,20 @@
         style="@style/colorTextTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_33"
-        android:layout_marginTop="@dimen/margin_3"
+        android:layout_marginStart="@dimen/dp33"
+        android:layout_marginTop="@dimen/dp3"
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/name"
-        android:textSize="@dimen/text_15"
+        android:textSize="@dimen/sp15"
         app:layout_constraintStart_toEndOf="@id/iv_user"
         app:layout_constraintTop_toTopOf="@id/iv_user" />
 
     <ImageView
         android:id="@+id/iv_location"
         style="@style/colorImageUser"
-        android:layout_width="@dimen/height_24"
-        android:layout_height="@dimen/height_24"
-        android:layout_marginStart="@dimen/margin_33"
+        android:layout_width="@dimen/dp24"
+        android:layout_height="@dimen/dp24"
+        android:layout_marginStart="@dimen/dp33"
         android:contentDescription="@string/app_name"
         android:src="@drawable/ic_users"
         app:layout_constraintStart_toEndOf="@id/iv_user"
@@ -48,15 +48,15 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_regular"
         android:text="@string/location"
-        android:textSize="@dimen/text_13"
+        android:textSize="@dimen/sp13"
         app:layout_constraintStart_toEndOf="@id/iv_location"
         app:layout_constraintTop_toTopOf="@id/iv_location"
         app:layout_constraintBottom_toBottomOf="@id/iv_location"/>
 
     <View
         android:layout_width="0dp"
-        android:layout_height="@dimen/height_1"
-        android:layout_marginTop="@dimen/margin_20"
+        android:layout_height="@dimen/dp1"
+        android:layout_marginTop="@dimen/dp20"
         android:background="@color/gray_soft"
         app:layout_constraintStart_toStartOf="@id/iv_location"
         app:layout_constraintTop_toBottomOf="@id/iv_location"
